@@ -1,0 +1,29 @@
+{
+  "name": "donation-web",
+  "version": "1.0.0",
+  "description": "an application to host donations for cnadidates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/cookie": "^11.0.2",
+    "@hapi/hapi": "^20.1.0",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/vision": "^6.0.1",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "handlebars": "^4.7.6",
+    "mongoose": "^5.11.17"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120
+  }
+}

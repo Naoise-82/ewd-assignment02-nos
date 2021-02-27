@@ -1,0 +1,46 @@
+<div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+  {{> title-card title="Donation Services Inc." subTitle="Please sign up"}}
+  {{> welcome-menu }}
+</div>
+<div class="uk-container uk-margin">
+  <div class="uk-child-width-expand uk-flex-center uk-flex-middle uk-text-center" uk-grid>
+    <div>
+      <img width="300" src="images/homer2.png">
+    </div>
+    <div>
+      <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large">
+        <h3 class="uk-card-title uk-text-center">Please enter details below</h3>
+        <form action="/signup" method="POST">
+          <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+              <span class="uk-form-icon" uk-icon="icon: user"></span> <input class="uk-input uk-form-large" type="text"
+                                                                             name="firstName">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+              <span class="uk-form-icon" uk-icon="icon: user"></span> <input class="uk-input uk-form-large" type="text"
+                                                                             name="lastName">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+              <span class="uk-form-icon" uk-icon="icon: mail"></span> <input class="uk-input uk-form-large" type="text"
+                                                                             name="email">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <div class="uk-inline uk-width-1-1">
+              <span class="uk-form-icon" uk-icon="icon: lock"></span> <input class="uk-input uk-form-large"
+                                                                             type="password" name="password">
+            </div>
+          </div>
+          <div class="uk-margin">
+            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Sign up</button>
+          </div>
+        </form>
+        {{> error }}
+      </div>
+    </div>
+  </div>
+</div>
