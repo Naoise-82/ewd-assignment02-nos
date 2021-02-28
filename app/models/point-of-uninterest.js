@@ -8,10 +8,10 @@ const pointsOfUninterestSchema = new Schema({
   category: String,
   description: String,
   analytics: String,
-  /*creator: {
+  creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
-  },*/
+  },
 });
 
-module.exports = Mongoose.model("Point-Of-Unnterest", pointsOfUninterestSchema);
+module.exports = Mongoose.model("Points-Of-Uninterest", pointsOfUninterestSchema);
