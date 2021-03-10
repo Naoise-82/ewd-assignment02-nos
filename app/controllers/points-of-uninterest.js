@@ -32,7 +32,6 @@ const PointsOfUninterest = {
         category: data.category,
         description: data.description,
         analytics: data.analytics,
-        firstName: user.firstName,
         creator: user._id
       });
       await newPointOfUninterest.save();

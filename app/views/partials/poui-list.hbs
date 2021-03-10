@@ -1,0 +1,23 @@
+<div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+  <table class="uk-table">
+    <caption>
+      Points of Uninterest To Date
+    </caption>
+    <thead>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Creator</th>
+    </thead>
+    <tbody class="uk-text-left">
+      {{#each pointsOfUninterest}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{category}}</td>
+        <td>{{description}}</td>
+        <td>{{creator.firstName}} {{creator.lastName}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
