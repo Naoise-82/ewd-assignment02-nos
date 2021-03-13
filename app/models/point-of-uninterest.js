@@ -3,7 +3,7 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-const pointsOfUninterestSchema = new Schema({
+const pointOfUninterestSchema = new Schema({
   name: String,
   category: String,
   description: String,
@@ -14,4 +14,4 @@ const pointsOfUninterestSchema = new Schema({
   },
 });
 
-module.exports = Mongoose.model("Points-Of-Uninterest", pointsOfUninterestSchema);
+module.exports = Mongoose.model("Point-Of-Uninterest", pointOfUninterestSchema);

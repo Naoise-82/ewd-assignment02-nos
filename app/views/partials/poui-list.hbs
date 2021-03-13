@@ -1,13 +1,14 @@
 <div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
   <table class="uk-table">
     <caption>
-      Points of Uninterest To Date
+     Your Points of Uninterest To Date
     </caption>
     <thead>
       <th>Name</th>
       <th>Category</th>
       <th>Description</th>
       <th>Creator</th>
+      <th>Delete</th>
     </thead>
     <tbody class="uk-text-left">
       {{#each pointsOfUninterest}}
@@ -16,6 +17,7 @@
         <td>{{category}}</td>
         <td>{{description}}</td>
         <td>{{creator.firstName}} {{creator.lastName}}</td>
+        <td><a href="#" ><i title="Delete this POUI" class="far fa-trash-alt fa-2x"></i></td>
       </tr>
       {{/each}}
     </tbody>

@@ -7,6 +7,7 @@ const Handlebars = require('handlebars');
 const Cookie = require('@hapi/cookie');
 require('./app/models/db');
 const env = require('dotenv');
+const Joi = require("@hapi/joi")
 
 env.config();
 
@@ -19,6 +20,7 @@ const server = Hapi.server({
     await server.register(Inert);
     await server.register(Vision);
     await server.register(Cookie);
+    server.validator(require("@hapi/joi"));
   
     server.auth.strategy('session', 'cookie', {
       cookie: {

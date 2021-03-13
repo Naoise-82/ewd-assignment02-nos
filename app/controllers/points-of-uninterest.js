@@ -37,7 +37,14 @@ const PointsOfUninterest = {
       await newPointOfUninterest.save();
       return h.redirect("/home");
     },
-  }
+  },
+
+  deletePOUI: {
+    handler: async function (request, h) {
+      //const poui = await PointOfUninterest.findById;
+      
+    }
+  },
 };
 
 module.exports = PointsOfUninterest;
