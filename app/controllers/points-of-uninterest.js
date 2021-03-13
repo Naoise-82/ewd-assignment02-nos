@@ -39,10 +39,27 @@ const PointsOfUninterest = {
     },
   },
 
+  viewPOUI: {
+    handler: async function (request, h) {
+      try {
+        const poui = PointsOfUninterest.findById(request.params._id)
+      } catch (err) {
+        return h.view("view-poui"), { errors: [{ message: err.message }] }
+      }
+
+    }
+  },
+
   deletePOUI: {
     handler: async function (request, h) {
-      //const poui = await PointOfUninterest.findById;
-      
+      try {
+        const poui = await PointOfUninterest.findById(request.params._id);
+        console.log("Removing POUI: " + poui);
+        await poui.remove();
+        return h.redirect("/report");
+      } catch (err) {
+        return h.view("report"), { errors: [{ message: err.message }] }
+      }
     }
   },
 };

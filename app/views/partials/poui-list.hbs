@@ -17,9 +17,10 @@
         <td>{{category}}</td>
         <td>{{description}}</td>
         <td>{{creator.firstName}} {{creator.lastName}}</td>
-        <td><a href="#" ><i title="Delete this POUI" class="far fa-trash-alt fa-2x"></i></td>
+        <td><a href="/delete-poui/{{_id}}" ><i title="Delete this POUI" class="far fa-trash-alt fa-2x"></i></td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+  {{> error }}
 </div>

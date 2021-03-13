@@ -14,6 +14,8 @@ module.exports = [
   { method: "GET", path: "/home", config: PointsOfUninterest.home },
   { method: "GET", path: "/report", config: PointsOfUninterest.report },
   { method: 'POST', path: '/create-poui', config: PointsOfUninterest.createPOUI },
+  { method: 'POST', path: '/view-poui/:_id', config: PointsOfUninterest.viewPOUI },
+  { method: 'GET', path: '/delete-poui/{_id}', config: PointsOfUninterest.deletePOUI },
 
   { method: 'GET', path: '/settings', config: Accounts.showSettings },
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
