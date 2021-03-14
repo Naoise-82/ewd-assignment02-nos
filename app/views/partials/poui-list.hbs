@@ -13,7 +13,7 @@
     <tbody class="uk-text-left">
       {{#each pointsOfUninterest}}
       <tr>
-        <td>{{name}}</td>
+        <td><a href="/view-poui/{{_id}}">{{name}}</a></td>
         <td>{{category}}</td>
         <td>{{description}}</td>
         <td>{{creator.firstName}} {{creator.lastName}}</td>

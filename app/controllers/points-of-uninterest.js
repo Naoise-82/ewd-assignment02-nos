@@ -1,6 +1,7 @@
 'use strict';
 
 const PointOfUninterest = require("../models/point-of-uninterest");
+const user = require("../models/user");
 const { populate } = require("../models/user");
 const User = require("../models/user");
 
@@ -42,11 +43,19 @@ const PointsOfUninterest = {
   viewPOUI: {
     handler: async function (request, h) {
       try {
-        const poui = PointsOfUninterest.findById(request.params._id)
+        const poui = await PointOfUninterest.findById(request.params._id);
+        const user = await User.findById(poui.creator);
+        console.log("Viewing POUI" + poui);
+        return h.view("view-poui", { 
+          title: "View POUI", 
+          name: poui.name,
+          category: poui.category,
+          description: poui.description,
+          creator: user.firstName + " " + user.lastName,
+        });
       } catch (err) {
         return h.view("view-poui"), { errors: [{ message: err.message }] }
       }
-
     }
   },
 
