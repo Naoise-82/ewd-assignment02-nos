@@ -1,0 +1,28 @@
+<form action="/edit-poui-form" method="POST">
+    <div class="uk-margin">
+        <div class="uk-form-label uk-text-bold uk-text-left">Name</div>
+        <div class="uk-inline uk-width-1-1">
+            <!-- <span class="uk-form-icon" uk-icon="icon: location"></span> -->
+            <input class="uk-input uk-form-medium" type="text" name="name" value="{{name}}">
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-form-label uk-text-bold uk-text-medium uk-text-left">Category</div>
+        <select class="uk-select" type="text" name="category">
+            <option> Average Tree </option>
+            <option> Mundane River </option>
+            <option> Mediocre Walkway </option>
+            <option> Bland National Monument </option>
+        </select>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+            <div class="uk-form-label uk-text-bold uk-text-medium uk-text-left">Description</div>
+            <input class="uk-input uk-form-medium" type="text" name="description" value="{{description}}">
+        </div>
+    </div>
+    <div class="uk-margin">
+        <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Save </button>
+    </div>
+</form>
+{{> error }}

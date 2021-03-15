@@ -1,5 +1,5 @@
 <div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
-  {{> title-card title="POUI Central" subTitle="Edit Your details..."}}
+  {{> title-card title="POUI Central" subTitle="Edit a POUI..."}}
   {{> main-menu }}
 </div>
 
@@ -7,8 +7,8 @@
   <div class="uk-child-width-expand uk-flex-center uk-flex-middle uk-text-center" uk-grid>
     <div class="uk-width-expand@m">
       <div class="uk-card uk-card-default uk-width-xlarge uk-card-body uk-box-shadow-large">
-        <h3 class="uk-card-title uk-text-center">Your Details: </h3>
-        {{> settings-form}}
+        <h3 class="uk-card-title uk-text-center">POUI Details: </h3>
+        {{> edit-poui-form poui=poui }}
       </div>
     </div>
   </div>
