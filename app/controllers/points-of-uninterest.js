@@ -63,7 +63,11 @@ const PointsOfUninterest = {
     handler: async function (request, h) {
       try {
         const poui = await PointOfUninterest.findById(request.params._id);
-        return h.view("edit-poui", { title: "Edit POUI", poui: poui });
+        return h.view("edit-poui", {
+          title: "Edit POUI",
+          name: poui.name,
+          category: poui.category,
+          description: poui.description });
       } catch (err) {
         return h.view("login", { errors: [{ message: err.message }] });
       }
@@ -93,12 +97,12 @@ const PointsOfUninterest = {
     handler: async function (request, h) {
       try {
         const pouiEdit = request.payload;
-        const poui = await PointOfUninterest.findById(request.params_id);
+        const poui = await PointOfUninterest.findById(request.params._id);
         poui.name = pouiEdit.name;
         poui.category = pouiEdit.category;
         poui.description = pouiEdit.description;
         await poui.save();
-        return h.redirect('/report');
+        return h.redirect('/view-poui', pouiEdit);
       } catch (err) {
         return h.view("report", { errors: [{ message: error.message }] });
       }

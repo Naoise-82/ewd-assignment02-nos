@@ -14,9 +14,10 @@
     <tbody class="uk-text-left">
       {{#each pointsOfUninterest}}
       <tr>
-        <td><a href="/view-poui/{{_id}}">{{name}}</a></td>
+        <td><a title="Click to view POUI" href="/view-poui/{{_id}}">{{name}}</a></td>
         <td>{{category}}</td>
-        <td>{{description}}</td>
+        <td><span style="display:inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        max-width: 30ch;">{{description}}</td>
         <td>{{creator.firstName}} {{creator.lastName}}</td>
         <td><a href="/edit-poui/{{_id}}" ><i title="Edit this POUI" class="far fa-edit fa-2x"></i></a></td>
         <td><a href="/delete-poui/{{_id}}" ><i title="Delete this POUI" class="far fa-trash-alt fa-2x"></i></a></td>
