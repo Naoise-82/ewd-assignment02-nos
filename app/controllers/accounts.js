@@ -129,17 +129,35 @@ const Accounts = {
 
     updateSettings: {
         handler: async function (request, h) {
-            const userEdit = request.payload;
-            const id = request.auth.credentials.id;
-            const user = await User.findById(id);
-            user.firstName = userEdit.firstName;
-            user.lastName = userEdit.lastName;
-            user.email = userEdit.email;
-            user.password = userEdit.password;
-            await user.save();
-            return h.redirect('/settings');
+            try {
+                const userEdit = request.payload;
+                const id = request.auth.credentials.id;
+                const user = await User.findById(id);
+                user.firstName = userEdit.firstName;
+                user.lastName = userEdit.lastName;
+                user.email = userEdit.email;
+                user.password = userEdit.password;
+                await user.save();
+                return h.redirect('/settings');
+            } catch (err) {
+                return h.view("login", { errors: [{ message: err.message }] });
+            }
         }
     },
+
+    deleteAccount: {
+        handler: async function (request, h) {
+            try {
+                const id = request.auth.credentials.id;
+                const user = await User.findById(id);
+                console.log("Removing User:" + user.firstName + " " + user.lastName);
+                await user.remove();
+                return h.redirect('/');
+            } catch (err) {
+                return h.view("login", { errors: [{ message: err.message }] });
+            }
+        }
+    }
 };
 
 module.exports = Accounts;
