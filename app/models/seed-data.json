@@ -26,18 +26,21 @@
             "name": "Uninteresting Oak",
             "category": "Average Tree",
             "description": "Praesent egestas dui id urna efficitur, sed euismod ligula sagittis. Curabitur non libero purus. Suspendisse potenti. Nam sem tellus, lacinia nec massa eu, ultricies viverra urna. Proin facilisis erat in luctus elementum. Nulla facilisi. Sed consectetur nunc et ante viverra vestibulum. Vestibulum quam est, imperdiet ut tempus vel, auctor nec odio. Vestibulum ac tempus nulla. In mauris diam, pretium eu diam quis, egestas dictum eros. Duis et aliquet erat.",
+            "imageURL": "/images/tree01.jpg",
             "creator": "->users.naoise"
         },
         "two": {
             "name": "Boring Ash",
             "category": "Average Tree",
             "description": "Curabitur laoreet scelerisque scelerisque. Phasellus orci est, vulputate vitae justo ac, rhoncus venenatis nulla. Aliquam vitae orci ullamcorper, ornare erat at, dictum tellus. Nullam et nisl nec est auctor auctor. Curabitur efficitur nunc nibh, non cursus quam bibendum eget. Nunc placerat pellentesque dolor, sit amet feugiat purus bibendum nec. Aliquam elementum, mauris eget dictum fermentum, est dui aliquet orci, eu malesuada orci dui sed orci. Donec condimentum ex eget tellus luctus, luctus imperdiet nibh consectetur. Etiam sem nisi, varius nec viverra ut, faucibus lacinia est. Sed faucibus est eget posuere facilisis. Donec pulvinar erat ac suscipit fermentum. Fusce hendrerit facilisis est a bibendum. Sed sagittis elit libero, vitae laoreet erat blandit sit amet.",
+            "imageURL": "/images/tree02.jpg",
             "creator": "->users.naoise"
         },
         "three": {
             "name": "Bland Cedar",
             "category": "Average Tree",
             "description": "Duis eu lacus at magna vestibulum porta. Nunc eleifend risus scelerisque enim convallis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida erat ut velit vulputate, vel pulvinar turpis facilisis. Integer et bibendum libero. Donec efficitur sagittis porta. Ut viverra, massa eu vehicula malesuada, felis elit tincidunt ipsum, ac ultrices nibh augue eget metus.",
+            "imageURL": "/images/tree03.jpg",
             "creator": "->users.naoise"
         },
         "four": {

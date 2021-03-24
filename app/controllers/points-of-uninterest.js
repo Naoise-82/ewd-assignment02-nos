@@ -63,6 +63,7 @@ const PointsOfUninterest = {
           name: poui.name,
           category: poui.category,
           description: poui.description,
+          imageURL: poui.imageURL,
           creator: user.firstName + " " + user.lastName,
         });
       } catch (err) {

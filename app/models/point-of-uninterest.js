@@ -7,7 +7,7 @@ const pointOfUninterestSchema = new Schema({
   name: String,
   category: String,
   description: String,
-  analytics: String,
+  imageURL: String,
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
