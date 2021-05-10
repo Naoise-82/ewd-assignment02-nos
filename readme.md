@@ -1,9 +1,9 @@
-# Enterprise Wed Development </br> *POUI Central* - Points of Uninterest Web App
+# Enterprise Wed Development Assignment 02 </br> *POUI Central* - Points of Uninterest Web App - Enhanced Veriosn
 #### Student Name: *Naoise O'Sullivan*
 #### Student ID: *20091403*
 
 ## Project Overview
-My aim for this project was to achive to somewhere around the *Good* row in the grading rubric. As such, I have managed to implement the following:
+
 
 ### Controllers & Models
 
@@ -22,4 +22,3 @@ My aim for this project was to achive to somewhere around the *Good* row in the 
 #### Database
 * Deployment to Cloud Atlas
 * Seed data via mais-mongoose-seeder
-
