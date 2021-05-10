@@ -1,4 +1,4 @@
-# Enterprise Wed Development Assignment 02 </br> *POUI Central* - Points of Uninterest Web App - Enhanced Veriosn
+# Enterprise Wed Development Assignment 02 </br> *POUI Central* - Points of Uninterest Web App - Enhanced Version
 #### Student Name: *Naoise O'Sullivan*
 #### Student ID: *20091403*
 
