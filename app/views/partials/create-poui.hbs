@@ -8,6 +8,7 @@
             <input class="uk-input" id="form-stacked-text" type="text" name="name" placeholder="Name" />
           </div>
         </div>
+
         <div class="uk-margin">
           <div class="uk-form-label uk-text-bold">Category</div>
           <select class="uk-select" type="text" name="category">
@@ -16,11 +17,20 @@
             <option> Mediocre Walkway </option>
             <option> Bland National Monument </option>
           </select>
+
+          <div class="uk-margin">
+            <label class="uk-form-label uk-text-bold" id="form-stacked-text">Location</label>
+            <div class="uk-form-controls">
+              <input style="margin-bottom: 5px;" class="uk-input" id="form-stacked-text" type="number" step="any" name="lat" placeholder="Latitude (e.g. 12.264803)" />
+              <input class="uk-input" id="form-stacked-text" type="number" step="any" name="lng" placeholder="Longtitude (e.g. -1.738760)" />
+            </div>
+          </div>
+
           <div class="uk-margin">
             <label class="uk-form-label uk-text-bold" id="form-stacked-text">Description</label>
             <div class="uk-form-controls">
               <textarea class="uk-textarea" id="form-stacked-text" type="text" name="description"
-                placeholder="Type your description here..." ></textarea>
+                placeholder="Type your description here..."></textarea>
             </div>
             <div class="uk-margin"></div>
             <button class="submit uk-button uk-button-primary uk-button-medium uk-width-1-2">Create POUI</button>

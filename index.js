@@ -16,8 +16,12 @@ if (result.error) {
 }
 
 const server = Hapi.server({
-    port: 3000,
-    host: 'localhost',
+  port: 3443,
+  tls: {
+    key: fs.readFileSync('keys/private/webserver.key'),
+    cert: fs.readFileSync('keys/webserver.crt')
+  },
+  routes: { cors: true },
   });
 
   async function init() {

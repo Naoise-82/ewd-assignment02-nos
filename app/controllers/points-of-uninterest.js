@@ -44,11 +44,14 @@ const PointsOfUninterest = {
       const newPointOfUninterest = new PointOfUninterest({
         name: data.name,
         category: data.category,
+        lat: data.lat,
+        lng: data.lng,
         description: data.description,
         creator: user._id
       });
       await newPointOfUninterest.save();
-      return h.redirect("/home");
+      console.log(newPointOfUninterest);
+      return h.redirect("/view-poui/" +newPointOfUninterest.id);
     },
   },
 
@@ -63,6 +66,8 @@ const PointsOfUninterest = {
           name: poui.name,
           category: poui.category,
           description: poui.description,
+          lat: poui.lat,
+          lng: poui.lng,
           imageURL: poui.imageURL,
           creator: user.firstName + " " + user.lastName,
         });
@@ -100,7 +105,7 @@ const PointsOfUninterest = {
       },
       failAction: function (request, h, error) {
         return h
-          .view("edit-poui", {
+          .view("view-poui/" + poui.id, {
             title: "Update POUI error",
             errors: error.details,
           })
@@ -119,7 +124,7 @@ const PointsOfUninterest = {
         await poui.save();
         return h.redirect('/report');
       } catch (err) {
-        return h.view("view-poui", { errors: [{ message: error.message }] });
+        return h.view("edit-poui" + poui.id, { errors: [{ message: error.message }] });
       }
     }
   },
