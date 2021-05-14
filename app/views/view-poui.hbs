@@ -9,18 +9,23 @@
   <p><b>Description:</b><br> {{description}}</p>
   <p><b>Creator:</b><br> {{creator}}</p>
   <p><b>Image:</b></p>
-  <center><img width="100px" alt="poui image" src="{{imageURL}}" /></center>
-  <table>
+  <center><img width="200px" alt="poui image" src="{{imageURL}}" /></center>
+  <div class="uk-text-left">
+    <p><b>Ratings</b></p>
+    <i class="fas fa-thumbs-up fa-2x"> {{thumbsUp}} </i>
+    <i class="fas fa-thumbs-down fa-2x"> {{thumbsDown}} </i>
+  </div>
+  <table class="uk-table-small">
     <thead>
-      <th>
-        Comments
+      <th class="uk-text-left">
+        Reviews
       </th>
     </thead>
     <tbody class="uk-text-left">
-      {{#each comments}}
+      {{#each reviews}}
       <tr>
-        <td>
-          {{user}}
+        <td class="uk-card uk-card-default uk-card-body uk-box-shadow-medium">
+          <b>{{reviewer}}:<br> </b><em>"{{comment}}"</em>
         </td>
       </tr>
       {{/each}}

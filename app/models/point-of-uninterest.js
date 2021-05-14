@@ -14,12 +14,16 @@ const pointOfUninterestSchema = new Schema({
   },
   lat: Number,
   lng: Number,
-  comments: [
+  reviews: [
     {
-      user: String,
+      reviewer: String,
       comment: String
     }
-  ]
+  ],
+  ratings: {
+    thumbsUp: Number,
+    thumbsDown: Number
+  }
 });
 
 module.exports = Mongoose.model("Point-Of-Uninterest", pointOfUninterestSchema);

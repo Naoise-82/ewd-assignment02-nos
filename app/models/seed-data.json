@@ -30,14 +30,22 @@
             "lng": 5.12477,
             "imageURL": "/images/tree01.jpg",
             "creator": "->users.naoise",
-            "comments": [
+            "ratings": {
+                "thumbsUp": 100,
+                "thumbsDown": 50
+            },
+            "reviews": [
                 {
-                    "user": "Tad Breezy",
+                    "reviewer": "Tad Breezy",
                     "comment": "Yup, it's boring alright."
                 },
                 {
-                    "user": "Christopher Columbus",
+                    "reviewer": "Christopher Columbus",
                     "comment": "Hated it."
+                },
+                {
+                    "reviewer": "Baba Booey",
+                    "comment": "Best day ever!"
                 }
             ]
         },

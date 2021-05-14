@@ -58,7 +58,7 @@ const PointsOfUninterest = {
   viewPOUI: {
     handler: async function (request, h) {
       try {
-        const poui = await PointOfUninterest.findById(request.params._id);
+        const poui = await PointOfUninterest.findById(request.params._id).lean();
         const user = await User.findById(poui.creator);
         console.log("Viewing POUI" + poui);
         return h.view("view-poui", {
@@ -70,7 +70,9 @@ const PointsOfUninterest = {
           lng: poui.lng,
           imageURL: poui.imageURL,
           creator: user.firstName + " " + user.lastName,
-          comments: poui.comments
+          thumbsUp: poui.ratings.thumbsUp,
+          thumbsDown: poui.ratings.thumbsDown,
+          reviews: poui.reviews
         });
       } catch (err) {
         return h.view("view-poui"), { errors: [{ message: err.message }] }
