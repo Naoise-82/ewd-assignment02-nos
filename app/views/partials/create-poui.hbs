@@ -20,9 +20,15 @@
 
           <div class="uk-margin">
             <label class="uk-form-label uk-text-bold" id="form-stacked-text">Location</label>
-            <div class="uk-form-controls">
-              <input style="margin-bottom: 5px;" class="uk-input" id="form-stacked-text" type="number" step="any" name="lat" placeholder="Latitude (e.g. 12.264803)" />
-              <input class="uk-input" id="form-stacked-text" type="number" step="any" name="lng" placeholder="Longtitude (e.g. -1.738760)" />
+            <div class="uk-grid-small" uk-grid>
+              <div class="uk-width-1-2@s">
+                <label class="uk-form-label">Latitude</label>
+                <input class="uk-input" type="number" step="any" name="lat">
+              </div>
+              <div class="uk-width-1-2@s">
+                <label class="uk-form-label">Longitude</label>
+                <input class="uk-input" type="number" step="any" name="lng">
+              </div>
             </div>
           </div>
 

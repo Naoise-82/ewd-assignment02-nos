@@ -70,6 +70,7 @@ const PointsOfUninterest = {
           lng: poui.lng,
           imageURL: poui.imageURL,
           creator: user.firstName + " " + user.lastName,
+          comments: poui.comments
         });
       } catch (err) {
         return h.view("view-poui"), { errors: [{ message: err.message }] }
@@ -83,6 +84,7 @@ const PointsOfUninterest = {
         const poui = await PointOfUninterest.findById(request.params._id);
         return h.view("edit-poui", {
           title: "Edit POUI",
+          id: poui._id,
           name: poui.name,
           category: poui.category,
           description: poui.description
@@ -122,9 +124,9 @@ const PointsOfUninterest = {
         poui.description = pouiEdit.description;
         console.log("POUI Name: " + poui.name);
         await poui.save();
-        return h.redirect('/report');
+        return h.redirect('/view-poui/' + poui.id);
       } catch (err) {
-        return h.view("edit-poui" + poui.id, { errors: [{ message: error.message }] });
+        return h.view("edit-poui/" + poui.id, { errors: [{ message: error.message }] });
       }
     }
   },

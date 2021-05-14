@@ -29,7 +29,17 @@
             "lat": -32.5985,
             "lng": 5.12477,
             "imageURL": "/images/tree01.jpg",
-            "creator": "->users.naoise"
+            "creator": "->users.naoise",
+            "comments": [
+                {
+                    "user": "Tad Breezy",
+                    "comment": "Yup, it's boring alright."
+                },
+                {
+                    "user": "Christopher Columbus",
+                    "comment": "Hated it."
+                }
+            ]
         },
         "two": {
             "name": "Boring Ash",

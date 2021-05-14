@@ -12,8 +12,14 @@ const pointOfUninterestSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-    lat: Number,
-    lng: Number,
+  lat: Number,
+  lng: Number,
+  comments: [
+    {
+      user: String,
+      comment: String
+    }
+  ]
 });
 
 module.exports = Mongoose.model("Point-Of-Uninterest", pointOfUninterestSchema);

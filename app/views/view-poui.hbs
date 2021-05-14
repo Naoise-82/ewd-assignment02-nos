@@ -9,5 +9,22 @@
   <p><b>Description:</b><br> {{description}}</p>
   <p><b>Creator:</b><br> {{creator}}</p>
   <p><b>Image:</b></p>
-  <center><img width="400px" alt="poui image" src="{{imageURL}}"/></center>
+  <center><img width="100px" alt="poui image" src="{{imageURL}}" /></center>
+  <table>
+    <thead>
+      <th>
+        Comments
+      </th>
+    </thead>
+    <tbody class="uk-text-left">
+      {{#each comments}}
+      <tr>
+        <td>
+          {{user}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
 </div>
