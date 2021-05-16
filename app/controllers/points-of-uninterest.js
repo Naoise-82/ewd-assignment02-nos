@@ -21,10 +21,7 @@ const PointsOfUninterest = {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
-        //console.log("User ID: " + id);
-        //console.log(user.firstName);
         const pointsOfUninterest = await PointOfUninterest.find({ creator: id }).populate("creator").lean();
-        // console.log(pointsOfUninterest)
         return h.view("report", {
           title: "Your POI's to Date",
           pointsOfUninterest: pointsOfUninterest,
@@ -59,15 +56,17 @@ const PointsOfUninterest = {
         const user = await User.findById(id);
         const data = request.payload;
         var pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
+
         if (data.category === undefined && data.searchTerm === undefined) {
           pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
         } else if (data.category === undefined) {
-          pointsOfUninterest = await PointOfUninterest.find( { $or: [ { name: { "$regex": new RegExp(data.searchTerm, "i" ) } }, { description: { "$regex": new RegExp(data.searchTerm, "i" ) } } ] }).populate("creator").lean();
+          pointsOfUninterest = await PointOfUninterest.find({ $or: [{ name: { "$regex": new RegExp(data.searchTerm, "i") } }, { description: { "$regex": new RegExp(data.searchTerm, "i") } }] }).populate("creator").lean();
         } else if (data.searchTerm === undefined) {
-          pointsOfUninterest = await PointOfUninterest.find( { category: data.category } ).populate("creator").lean();
+          pointsOfUninterest = await PointOfUninterest.find({ category: data.category }).populate("creator").lean();
         } else {
-          pointsOfUninterest = await PointOfUninterest.find( { $and: [ { name: { "$regex": new RegExp(data.searchTerm, "i" ) } }, { category: data.category } ] } ).populate("creator").lean();
+          pointsOfUninterest = await PointOfUninterest.find({ $and: [{ $or: [{ name: { "$regex": new RegExp(data.searchTerm, "i") } }, { description: { "$regex": new RegExp(data.searchTerm, "i") } }] }, { category: data.category }] }).populate("creator").lean();
         };
+
         return h.view("view-all-poui", {
           title: "All POUI's to Date",
           pointsOfUninterest: pointsOfUninterest
@@ -101,17 +100,18 @@ const PointsOfUninterest = {
     handler: async function (request, h) {
       try {
         const poui = await PointOfUninterest.findById(request.params._id).lean();
-        const user = await User.findById(poui.creator);
-        console.log("Viewing POUI" + poui);
+        const creator = await User.findById(poui.creator);
+        console.log("Viewing POUI " + poui);
         return h.view("view-poui", {
           title: "View POUI",
           name: poui.name,
+          id: poui.id,
           category: poui.category,
           description: poui.description,
           lat: poui.lat,
           lng: poui.lng,
           imageURL: poui.imageURL,
-          creator: user.firstName + " " + user.lastName,
+          creator: creator.firstName + " " + creator.lastName,
           thumbsUp: poui.ratings.thumbsUp,
           thumbsDown: poui.ratings.thumbsDown,
           reviews: poui.reviews
@@ -120,6 +120,31 @@ const PointsOfUninterest = {
         return h.view("view-poui"), { errors: [{ message: err.message }] }
       }
     }
+  },
+
+  submitReview: {
+    handler: async function (request, h) {
+      try {
+        const poui = await PointOfUninterest.findById(request.params._id);
+        const data = request.payload;
+        const id = request.auth.credentials.id;
+        const reviewer = await User.findById(id);
+        const comment = data.comment;
+        
+        const review = {
+          "reviewer": reviewer.firstName + " " + reviewer.lastName,
+          "comment": comment
+        };
+
+        poui.reviews.push(review);
+        console.log(poui.reviews);
+        await poui.save();
+        return h.redirect("/view-poui/" + poui.id)
+
+      } catch (err) {
+        return h.view("view-poui", { errors: [{ message: err.message }] });
+      }
+    },
   },
 
   editPOUIPage: {
