@@ -13,6 +13,8 @@ module.exports = [
 
   { method: "GET", path: "/home", config: PointsOfUninterest.home },
   { method: "GET", path: "/report", config: PointsOfUninterest.report },
+  { method: "GET", path: "/view-all-poui", config: PointsOfUninterest.viewAllPOUI },
+  { method: "POST", path: "/search-poui", config: PointsOfUninterest.searchPOUI },
   { method: 'POST', path: '/create-poui', config: PointsOfUninterest.createPOUI },
   { method: 'GET', path: '/view-poui/{_id}', config: PointsOfUninterest.viewPOUI },
   { method: 'GET', path: '/edit-poui-page/{_id}', config: PointsOfUninterest.editPOUIPage },

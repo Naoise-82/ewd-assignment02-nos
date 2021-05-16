@@ -1,0 +1,45 @@
+<div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <h1>
+        All Points of Uninterest To Date
+    </h1>
+    <h3 class="uk-text-left">Search & Refine</h3>
+    <form class="uk-grid-small uk-form-stacked uk-text-left" action="/search-poui" method="POST" uk-grid>
+        <div class="uk-width-expand">
+            <select class="uk-select" type="text" name="category">
+                <option disabled selected hidden> Select a Category </option>
+                <option> Average Tree </option>
+                <option> Mundane River </option>
+                <option> Mediocre Walkway </option>
+                <option> Bland National Monument </option>
+            </select>
+        </div>
+        <div class="uk-width-expand">
+            <input class="uk-input uk-width-expand" placeholder="Enter a search term..." name="searchTerm"></input>
+        </div>
+        <div class="uk-width-1-6">
+            <button class="submit uk-button uk-button-primary uk-width-expand uk-button-medium"> Search </button>
+        </div>
+    </form>
+</div>
+<div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+    <table class="uk-table">
+        <thead>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Creator</th>
+        </thead>
+        <tbody class="uk-text-left">
+            {{#each pointsOfUninterest}}
+            <tr>
+                <td><a title="Click to view POUI" href="/view-poui/{{_id}}">{{name}}</a></td>
+                <td>{{category}}</td>
+                <td><span style="display:inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        max-width: 30ch;">{{description}}</td>
+                <td>{{creator.firstName}} {{creator.lastName}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{> error }}
+</div>

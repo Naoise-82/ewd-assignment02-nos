@@ -26,12 +26,54 @@ const PointsOfUninterest = {
         const pointsOfUninterest = await PointOfUninterest.find({ creator: id }).populate("creator").lean();
         // console.log(pointsOfUninterest)
         return h.view("report", {
-          title: "POI's to Date",
+          title: "Your POI's to Date",
           pointsOfUninterest: pointsOfUninterest,
           name: user.firstName,
         });
       } catch (err) {
         return h.view("report"), { errors: [{ message: err.message }] }
+      }
+    }
+  },
+
+  viewAllPOUI: {
+    handler: async function (request, h) {
+      try {
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id);
+        const pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
+        return h.view("view-all-poui", {
+          title: "All POI's to Date",
+          pointsOfUninterest: pointsOfUninterest,
+        });
+      } catch (err) {
+        return h.view("home"), { errors: [{ message: err.message }] }
+      }
+    }
+  },
+
+  searchPOUI: {
+    handler: async function (request, h) {
+      try {
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id);
+        const data = request.payload;
+        var pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
+        if (data.category === undefined && data.searchTerm === undefined) {
+          pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
+        } else if (data.category === undefined) {
+          pointsOfUninterest = await PointOfUninterest.find( { $or: [ { name: { "$regex": new RegExp(data.searchTerm, "i" ) } }, { description: { "$regex": new RegExp(data.searchTerm, "i" ) } } ] }).populate("creator").lean();
+        } else if (data.searchTerm === undefined) {
+          pointsOfUninterest = await PointOfUninterest.find( { category: data.category } ).populate("creator").lean();
+        } else {
+          pointsOfUninterest = await PointOfUninterest.find( { $and: [ { name: { "$regex": new RegExp(data.searchTerm, "i" ) } }, { category: data.category } ] } ).populate("creator").lean();
+        };
+        return h.view("view-all-poui", {
+          title: "All POUI's to Date",
+          pointsOfUninterest: pointsOfUninterest
+        });
+      } catch (err) {
+        return h.view("view-all-pouis"), { errors: [{ message: err.message }] }
       }
     }
   },
@@ -51,7 +93,7 @@ const PointsOfUninterest = {
       });
       await newPointOfUninterest.save();
       console.log(newPointOfUninterest);
-      return h.redirect("/view-poui/" +newPointOfUninterest.id);
+      return h.redirect("/view-poui/" + newPointOfUninterest.id);
     },
   },
 
