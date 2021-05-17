@@ -101,6 +101,7 @@ const PointsOfUninterest = {
       try {
         const poui = await PointOfUninterest.findById(request.params._id).lean();
         const creator = await User.findById(poui.creator);
+        const percentagePositive = Math.round(poui.ratings.thumbsUp/(poui.ratings.thumbsUp+poui.ratings.thumbsDown)*100);
         console.log("Viewing POUI " + poui);
         return h.view("view-poui", {
           title: "View POUI",
@@ -114,6 +115,7 @@ const PointsOfUninterest = {
           creator: creator.firstName + " " + creator.lastName,
           thumbsUp: poui.ratings.thumbsUp,
           thumbsDown: poui.ratings.thumbsDown,
+          percentagePositive: percentagePositive,
           reviews: poui.reviews
         });
       } catch (err) {
@@ -122,6 +124,7 @@ const PointsOfUninterest = {
     }
   },
 
+  // Adds a review to the list of reviews on the view POUI page
   submitReview: {
     handler: async function (request, h) {
       try {
@@ -132,7 +135,7 @@ const PointsOfUninterest = {
         const userId = request.auth.credentials.id;
         const reviewer = await User.findById(userId);
         const comment = data.comment;
-        
+
         const review = {
           "reviewer": reviewer.firstName + " " + reviewer.lastName,
           "comment": comment
@@ -148,6 +151,31 @@ const PointsOfUninterest = {
         return h.view("view-poui", { errors: [{ message: err.message }] });
       }
     },
+  },
+
+  // Adds a thumbs-up/down to the poui
+  upVote: {
+    handler: async function (request, h) {
+      try {
+        const poui = await PointOfUninterest.findById(request.params._id);
+        console.log("POUI: " + poui.name);
+        const id = poui._id;
+        const userId = request.auth.credentials.id;
+        const rater = await User.findById(userId);
+
+        // poui.ratings.raters.push(rater.firstName + " " + rater.lastName);
+        poui.ratings.thumbsUp = poui.ratings.thumbsUp+1;
+
+        await poui.save();
+
+        console.log(poui);
+        await poui.save();
+        return h.redirect("/view-poui/" + id);
+
+      } catch (err) {
+        return h.view("view-poui", { errors: [{ message: err.message }] });
+      }
+    }
   },
 
   editPOUIPage: {

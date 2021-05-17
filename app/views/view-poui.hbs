@@ -17,9 +17,11 @@
 
   <div class="uk-text-center uk-margin uk-margin-auto uk-card-default uk-width-1-4@s">
     <p class="uk-margin-remove-bottom uk-text-large"><b>Ratings</b></p>
-    <i style="color: green;" class="fas fa-thumbs-up fa-lg uk-padding-small"> {{thumbsUp}} </i>
-    <i style="color: red;" class="fas fa-thumbs-down fa-lg uk-padding-small"> {{thumbsDown}} </i>
-    <p class="uk-margin-remove-top uk-text-large"><b>66% Positive</b></p>
+    <form action="/upvote/{{id}}" method="POST">
+      <button style="color: green;" class=" submit fas fa-thumbs-up fa-lg uk-padding-small"> {{thumbsUp}} </button>
+    </form>
+    <button style="color: red;" class="fas fa-thumbs-down fa-lg uk-padding-small"> {{thumbsDown}} </button>
+    <p class="uk-margin-remove-top uk-text-large"><b>{{percentagePositive}}% Positive</b></p>
   </div>
 
   <div class="uk-card-default uk-padding-small uk-margin-auto">
