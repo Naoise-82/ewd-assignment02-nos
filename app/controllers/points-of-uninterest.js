@@ -105,7 +105,7 @@ const PointsOfUninterest = {
         return h.view("view-poui", {
           title: "View POUI",
           name: poui.name,
-          id: poui.id,
+          id: poui._id,
           category: poui.category,
           description: poui.description,
           lat: poui.lat,
@@ -126,9 +126,11 @@ const PointsOfUninterest = {
     handler: async function (request, h) {
       try {
         const poui = await PointOfUninterest.findById(request.params._id);
+        console.log("POUI: " + poui.name);
+        const id = poui._id;
         const data = request.payload;
-        const id = request.auth.credentials.id;
-        const reviewer = await User.findById(id);
+        const userId = request.auth.credentials.id;
+        const reviewer = await User.findById(userId);
         const comment = data.comment;
         
         const review = {
@@ -136,10 +138,11 @@ const PointsOfUninterest = {
           "comment": comment
         };
 
-        poui.reviews.push(review);
-        console.log(poui.reviews);
+        console.log(review);
+        poui.reviews.unshift(review);
+        console.log(poui);
         await poui.save();
-        return h.redirect("/view-poui/" + poui.id)
+        return h.redirect("/view-poui/" + id);
 
       } catch (err) {
         return h.view("view-poui", { errors: [{ message: err.message }] });
@@ -176,7 +179,7 @@ const PointsOfUninterest = {
       },
       failAction: function (request, h, error) {
         return h
-          .view("view-poui/" + poui.id, {
+          .view("view-poui/" + poui._id, {
             title: "Update POUI error",
             errors: error.details,
           })
