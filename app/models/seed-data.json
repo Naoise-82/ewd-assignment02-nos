@@ -5,19 +5,19 @@
             "firstName": "Naoise",
             "lastName": "O'Sullivan",
             "email": "naoise@osullivan.com",
-            "password": "secret"
+            "password": "$2a$10$xlA/cozbFdUBwWexoGL.VO84qA7LJyGChaTv3LOfnP6hw5.3vFhi6"
         },
         "tad": {
             "firstName": "Tad",
             "lastName": "Breezy",
             "email": "tad@breezy.com",
-            "password": "secret"
+            "password": "$2a$10$xlA/cozbFdUBwWexoGL.VO84qA7LJyGChaTv3LOfnP6hw5.3vFhi6"
         },
         "chris": {
             "firstName": "Christopher",
             "lastName": "Columbus",
             "email": "chris@columbus.com",
-            "password": "secret"
+            "password": "$2a$10$xlA/cozbFdUBwWexoGL.VO84qA7LJyGChaTv3LOfnP6hw5.3vFhi6"
         }
     },
     "pouis": {
