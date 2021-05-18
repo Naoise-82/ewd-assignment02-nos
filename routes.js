@@ -19,6 +19,7 @@ module.exports = [
   { method: 'GET', path: '/view-poui/{_id}', config: PointsOfUninterest.viewPOUI },
   { method: 'POST', path: '/submit-review/{_id}', config: PointsOfUninterest.submitReview },
   { method: 'POST', path: '/upvote/{_id}', config: PointsOfUninterest.upVote },
+  { method: 'POST', path: '/downvote/{_id}', config: PointsOfUninterest.downVote },
   { method: 'GET', path: '/edit-poui-page/{_id}', config: PointsOfUninterest.editPOUIPage },
   { method: 'POST', path: '/edit-poui/{_id}', config: PointsOfUninterest.editPOUI },
   { method: 'GET', path: '/delete-poui/{_id}', config: PointsOfUninterest.deletePOUI },

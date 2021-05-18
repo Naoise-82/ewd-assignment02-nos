@@ -101,7 +101,7 @@ const PointsOfUninterest = {
       try {
         const poui = await PointOfUninterest.findById(request.params._id).lean();
         const creator = await User.findById(poui.creator);
-        const percentagePositive = Math.round(poui.ratings.thumbsUp/(poui.ratings.thumbsUp+poui.ratings.thumbsDown)*100);
+        const percentagePositive = Math.round(poui.ratings.thumbsUp / (poui.ratings.thumbsUp + poui.ratings.thumbsDown) * 100);
         console.log("Viewing POUI " + poui);
         return h.view("view-poui", {
           title: "View POUI",
@@ -153,7 +153,7 @@ const PointsOfUninterest = {
     },
   },
 
-  // Adds a thumbs-up/down to the poui
+  // Adds a thumbs-up to the poui
   upVote: {
     handler: async function (request, h) {
       try {
@@ -161,16 +161,51 @@ const PointsOfUninterest = {
         console.log("POUI: " + poui.name);
         const id = poui._id;
         const userId = request.auth.credentials.id;
-        const rater = await User.findById(userId);
+        const currentUser = await User.findById(userId).lean();
+        const userName = currentUser.firstName + " " + currentUser.lastName;
+        console.log(userName);
 
-        // poui.ratings.raters.push(rater.firstName + " " + rater.lastName);
-        poui.ratings.thumbsUp = poui.ratings.thumbsUp+1;
-
-        await poui.save();
+        if (poui.ratings.raters.includes(userName)) {
+          console.log("Already Voted");
+          return h.redirect("/view-poui/" + id);
+        } else {
+        poui.ratings.raters.push(userName);
+        poui.ratings.thumbsUp = poui.ratings.thumbsUp + 1;
 
         console.log(poui);
         await poui.save();
         return h.redirect("/view-poui/" + id);
+        };
+
+      } catch (err) {
+        return h.view("view-poui", { errors: [{ message: err.message }] });
+      }
+    }
+  },
+
+  // Adds a thumbs-down to the poui
+  downVote: {
+    handler: async function (request, h) {
+      try {
+        const poui = await PointOfUninterest.findById(request.params._id);
+        console.log("POUI: " + poui.name);
+        const id = poui._id;
+        const userId = request.auth.credentials.id;
+        const currentUser = await User.findById(userId).lean();
+        const userName = currentUser.firstName + " " + currentUser.lastName
+        console.log(userName);
+
+        if (poui.ratings.raters.includes(userName)) {
+          console.log("Already Voted");
+          return h.redirect("/view-poui/" + id);
+        } else {
+          poui.ratings.raters.push(userName);
+          poui.ratings.thumbsUp = poui.ratings.thumbsUp + 1;
+
+          console.log(poui);
+          await poui.save();
+          return h.redirect("/view-poui/" + id);
+        };
 
       } catch (err) {
         return h.view("view-poui", { errors: [{ message: err.message }] });

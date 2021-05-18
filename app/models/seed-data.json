@@ -36,6 +36,9 @@
             },
             "reviews": [
                 {
+                    "raters": [
+                        "Naoise O'Sullivan"
+                    ],
                     "reviewer": "Tad Breezy",
                     "comment": "Yup, it's boring alright."
                 },
@@ -111,6 +114,9 @@
             "lng": 5.12477,
             "creator": "->users.tad",
             "ratings": {
+                "raters": [
+                    "Naoise O'Sullivan"
+                ],
                 "thumbsUp": 100,
                 "thumbsDown": 50
             },

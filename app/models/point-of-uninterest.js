@@ -21,6 +21,7 @@ const pointOfUninterestSchema = new Schema({
     }
   ],
   ratings: {
+    raters: [String],
     thumbsUp: Number,
     thumbsDown: Number
   }
