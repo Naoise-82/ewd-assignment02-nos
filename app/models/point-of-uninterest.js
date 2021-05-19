@@ -12,8 +12,10 @@ const pointOfUninterestSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  lat: Number,
-  lng: Number,
+  location: {
+    lat: Number,
+    lng: Number
+  },
   reviews: [
     {
       reviewer: String,

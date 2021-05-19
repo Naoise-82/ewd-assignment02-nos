@@ -28,13 +28,34 @@
 
   <div class="uk-card-default uk-padding-small uk-margin-auto">
     <p class="uk-text-large uk-text-center"><b>Creator</b><br> {{creator}}</p>
-    <p class="uk-text-large uk-margin-remove-bottom uk-padding-remove-bottom"><b>Description</b></p><br>
+    <p class="uk-text-large uk-margin-remove-bottom uk-padding-remove-bottom"><b>Description</b></p>
     <p>{{description}}</p>
   </div>
 
-  <div class="uk-margin uk-margin-auto uk-width-1-2@s uk-text-center uk-card-default uk-padding-small">
+  <!-- <div class="uk-margin uk-margin-auto uk-width-1-2@s uk-text-center uk-card-default uk-padding-small">
     <img alt="poui image" src="{{imageURL}}" />
-  </div>
+  </div> -->
+
+  <div class="uk-margin uk-margin-auto uk-card-default" id="mapid" style="height: 400px; width: 600px;"></div>
+  <script>
+    // set the map to centre on the location of the coordinates from the POUI
+    var mymap = L.map('mapid').setView([{{lat}}, {{lng}}], 13);
+
+
+    // add a marker at the location and an attached popup with the name
+    var marker = L.marker([{{lat}}, {{lng}}]).addTo(mymap).bindTooltip("{{name}}");
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/outdoors-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1Ijoibm9zdWxsaXZhbiIsImEiOiJja292ajUzcncwM2gyMm51dHB2MGZtYXhkIn0.Qwbbfz_z5sUYxPlTV1xJ2g'
+    }).addTo(mymap);
+
+  </script>
+
 
   <div class="uk-text-center uk-text-large uk-text-bold">
     Reviews

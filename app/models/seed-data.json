@@ -26,8 +26,10 @@
             "name": "Uninteresting Oak",
             "category": "Average Tree",
             "description": "Praesent egestas dui id urna efficitur, sed euismod ligula sagittis. Curabitur non libero purus. Suspendisse potenti. Nam sem tellus, lacinia nec massa eu, ultricies viverra urna. Proin facilisis erat in luctus elementum. Nulla facilisi. Sed consectetur nunc et ante viverra vestibulum. Vestibulum quam est, imperdiet ut tempus vel, auctor nec odio. Vestibulum ac tempus nulla. In mauris diam, pretium eu diam quis, egestas dictum eros. Duis et aliquet erat.",
-            "lat": -32.5985,
-            "lng": 5.12477,
+            "location": {
+                "lat": 52.229414,
+                "lng": -8.493308
+            },
             "imageURL": "/images/tree01.jpg",
             "creator": "->users.naoise",
             "ratings": {
