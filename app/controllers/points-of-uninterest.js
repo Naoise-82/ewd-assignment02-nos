@@ -40,22 +40,45 @@ const PointsOfUninterest = {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
         const pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
-        
-        const pouiCoords = [];
-        
+
+        var pouiCoords = [];
+        var pouiNames = [];
+
         var i;
         for (i = 0; i < pointsOfUninterest.length; i++) {
-          var latLng = [pointsOfUninterest[i].location.lat,pointsOfUninterest[i].location.lng];
+          var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
+          var pouiName = pointsOfUninterest[i].name;
+          pouiNames.push(pouiName);
           pouiCoords.push(latLng);
+
         }
 
-        var coordArray = JSON.stringify(pouiCoords);
+        // convert the coordinates into a string usable by handlebars
+        var coordArrayString = JSON.stringify(pouiCoords);
+
+        // split the lat and lng coordinates into two arrays for recombining into markers at the front-end script
+        var latArray = [];
+        var lngArray = [];
+
+        for (i = 0; i < pointsOfUninterest.length; i++) {
+          var lat = pointsOfUninterest[i].location.lat;
+          latArray.push(lat);
+          var lng = pointsOfUninterest[i].location.lng;
+          lngArray.push(lng);
+        }
+
+        // convert the arrays to literal strings containing [] brackets
+        var latArrayString = JSON.stringify(latArray);
+        var lngArrayString = JSON.stringify(lngArray);
 
 
         return h.view("view-all-poui", {
           title: "All POI's to Date",
           pointsOfUninterest: pointsOfUninterest,
-          coordArray: coordArray
+          coordArrayString: coordArrayString,
+          pouiNames: pouiNames,
+          latArrayString: latArrayString,
+          lngArrayString: lngArrayString
         });
       } catch (err) {
         return h.view("home"), { errors: [{ message: err.message }] }
@@ -71,6 +94,7 @@ const PointsOfUninterest = {
         const data = request.payload;
         var pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
 
+        // allow for searching with or without category or keywords defined
         if (data.category === undefined && data.searchTerm === undefined) {
           pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
         } else if (data.category === undefined) {
@@ -81,20 +105,44 @@ const PointsOfUninterest = {
           pointsOfUninterest = await PointOfUninterest.find({ $and: [{ $or: [{ name: { "$regex": new RegExp(data.searchTerm, "i") } }, { description: { "$regex": new RegExp(data.searchTerm, "i") } }] }, { category: data.category }] }).populate("creator").lean();
         };
 
-        const pouiCoords = [];
-        
+        // the same code as for viewAllPOUI() above reused after the serch has refined the POUI list
+        var pouiCoords = [];
+        var pouiNames = [];
+
         var i;
         for (i = 0; i < pointsOfUninterest.length; i++) {
-          var latLng = [pointsOfUninterest[i].location.lat,pointsOfUninterest[i].location.lng];
+          var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
+          var pouiName = pointsOfUninterest[i].name;
+          pouiNames.push(pouiName);
           pouiCoords.push(latLng);
+
         }
 
-        var coordArray = JSON.stringify(pouiCoords);
+
+        var coordArrayString = JSON.stringify(pouiCoords);
+
+        // split the lat anf lng coordinated into two arrays for recombining into markers on the map
+        var latArray = [];
+        var lngArray = [];
+
+        for (i = 0; i < pointsOfUninterest.length; i++) {
+          var lat = pointsOfUninterest[i].location.lat;
+          latArray.push(lat);
+          var lng = pointsOfUninterest[i].location.lng;
+          lngArray.push(lng);
+        }
+
+        // convert the arrays to literal strings
+        var latArrayString = JSON.stringify(latArray);
+        var lngArrayString = JSON.stringify(lngArray);
 
         return h.view("view-all-poui", {
           title: "All POUI's to Date",
           pointsOfUninterest: pointsOfUninterest,
-          coordArray: coordArray
+          coordArrayString: coordArrayString,
+          pouiNames: pouiNames,
+          latArrayString: latArrayString,
+          lngArrayString: lngArrayString
         });
       } catch (err) {
         return h.view("view-all-pouis"), { errors: [{ message: err.message }] }
@@ -190,16 +238,17 @@ const PointsOfUninterest = {
         const userName = currentUser.firstName + " " + currentUser.lastName;
         console.log(userName);
 
+        //check if the current user has already voted on this POUI before, and ignore the vote if they have
         if (poui.ratings.raters.includes(userName)) {
           console.log("Already Voted");
           return h.redirect("/view-poui/" + id);
         } else {
-        poui.ratings.raters.push(userName);
-        poui.ratings.thumbsUp = poui.ratings.thumbsUp + 1;
+          poui.ratings.raters.push(userName);
+          poui.ratings.thumbsUp = poui.ratings.thumbsUp + 1;
 
-        console.log(poui);
-        await poui.save();
-        return h.redirect("/view-poui/" + id);
+          console.log(poui);
+          await poui.save();
+          return h.redirect("/view-poui/" + id);
         };
 
       } catch (err) {
@@ -219,7 +268,8 @@ const PointsOfUninterest = {
         const currentUser = await User.findById(userId).lean();
         const userName = currentUser.firstName + " " + currentUser.lastName
         console.log(userName);
-
+        
+        //check if the current user has already voted on this POUI before, and ignore the vote if they have
         if (poui.ratings.raters.includes(userName)) {
           console.log("Already Voted");
           return h.redirect("/view-poui/" + id);

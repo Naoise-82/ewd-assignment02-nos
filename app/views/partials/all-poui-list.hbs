@@ -45,12 +45,44 @@
     </table>
     {{> error }}
 </div>
-<div class="uk-margin uk-margin-auto uk-card-default" id="mapid" style="height: 500px; width: 100%;"></div>
-<script>
 
-    var mymap = L.map('mapid').fitBounds({{coordArray}});
+<div class="uk-margin uk-margin-auto uk-card-default" id="mapid" style="height: 700px; width: 100%;"></div>
 
+<script type="text/javascript">
 
+    // create a map object
+    var mymap = L.map('mapid').fitBounds({{ coordArrayString }});
+
+    // convert the array strings passed in via handlebars params back into arrays for building markers
+    var nameArray = "{{pouiNames}}".split(',');
+    console.log(nameArray);
+
+    // some quite cumbersome string manipulation and conversion back an array for the lat and lng arrays
+    var latArrayString = "{{latArrayString}}";
+    latArrayString = latArrayString.substring(1, latArrayString.length-1);
+    console.log(latArrayString);
+    var latArray = latArrayString.split(',');
+    console.log(latArray);
+
+    var lngArrayString = "{{lngArrayString}}";
+    lngArrayString = lngArrayString.substring(1, lngArrayString.length-1);
+    lngArray = lngArrayString.split(',');
+    console.log(lngArray);
+
+    // build an array of markers from the coordinates and names
+    markers = [];
+    var i;
+    for (i = 0; i < nameArray.length; i++) {
+        marker = L.marker([latArray[i], lngArray[i]]);
+        markers.push(marker);
+    }
+
+    console.log(markers)
+    // add the markers to the map
+    for (i = 0; i < markers.length; i++) {
+        markers[i].addTo(mymap).bindTooltip(nameArray[i]);
+    }
+    
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
