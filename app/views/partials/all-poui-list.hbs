@@ -21,7 +21,8 @@
         </div>
     </form>
 </div>
-<div class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+<div style="max-height: 400px; overflow: auto;"
+    class="uk-margin uk-width-3xlarge uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
     <table class="uk-table">
         <thead>
             <th>Name</th>
@@ -34,8 +35,9 @@
             <tr>
                 <td><a title="Click to view POUI" href="/view-poui/{{_id}}">{{name}}</a></td>
                 <td>{{category}}</td>
-                <td><span style="display:inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        max-width: 30ch;">{{description}}</td>
+                <td><span
+                        style="display:inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;max-width: 30ch;">{{description}}
+                </td>
                 <td>{{creator.firstName}} {{creator.lastName}}</td>
             </tr>
             {{/each}}
@@ -43,3 +45,20 @@
     </table>
     {{> error }}
 </div>
+<div class="uk-margin uk-margin-auto uk-card-default" id="mapid" style="height: 500px; width: 100%;"></div>
+<script>
+
+    var mymap = L.map('mapid').fitBounds({{coordArray}});
+
+
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 30,
+        id: 'mapbox/outdoors-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoibm9zdWxsaXZhbiIsImEiOiJja292ajUzcncwM2gyMm51dHB2MGZtYXhkIn0.Qwbbfz_z5sUYxPlTV1xJ2g'
+    }).addTo(mymap);
+
+</script>

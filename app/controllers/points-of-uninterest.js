@@ -7,11 +7,12 @@ const User = require("../models/user");
 const Joi = require('@hapi/joi');
 const { notImplemented } = require("@hapi/boom");
 const { isValidObjectId } = require("mongoose");
+const { func } = require("@hapi/joi");
 
 const PointsOfUninterest = {
 
   home: {
-    handler: function (request, h) {
+    handler: function (_request, h) {
       return h.view("home", { title: "Create & Manage Points of Uninterest" });
     },
   },
@@ -39,9 +40,22 @@ const PointsOfUninterest = {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
         const pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
+        
+        const pouiCoords = [];
+        
+        var i;
+        for (i = 0; i < pointsOfUninterest.length; i++) {
+          var latLng = [pointsOfUninterest[i].location.lat,pointsOfUninterest[i].location.lng];
+          pouiCoords.push(latLng);
+        }
+
+        var coordArray = JSON.stringify(pouiCoords);
+
+
         return h.view("view-all-poui", {
           title: "All POI's to Date",
           pointsOfUninterest: pointsOfUninterest,
+          coordArray: coordArray
         });
       } catch (err) {
         return h.view("home"), { errors: [{ message: err.message }] }
@@ -67,9 +81,20 @@ const PointsOfUninterest = {
           pointsOfUninterest = await PointOfUninterest.find({ $and: [{ $or: [{ name: { "$regex": new RegExp(data.searchTerm, "i") } }, { description: { "$regex": new RegExp(data.searchTerm, "i") } }] }, { category: data.category }] }).populate("creator").lean();
         };
 
+        const pouiCoords = [];
+        
+        var i;
+        for (i = 0; i < pointsOfUninterest.length; i++) {
+          var latLng = [pointsOfUninterest[i].location.lat,pointsOfUninterest[i].location.lng];
+          pouiCoords.push(latLng);
+        }
+
+        var coordArray = JSON.stringify(pouiCoords);
+
         return h.view("view-all-poui", {
           title: "All POUI's to Date",
-          pointsOfUninterest: pointsOfUninterest
+          pointsOfUninterest: pointsOfUninterest,
+          coordArray: coordArray
         });
       } catch (err) {
         return h.view("view-all-pouis"), { errors: [{ message: err.message }] }
@@ -240,7 +265,7 @@ const PointsOfUninterest = {
       options: {
         abortEarly: false,
       },
-      failAction: function (request, h, error) {
+      failAction: function (_request, h, error) {
         return h
           .view("view-poui/" + poui._id, {
             title: "Update POUI error",
