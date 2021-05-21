@@ -16,10 +16,26 @@
             <option> Bland National Monument </option>
         </select>
     </div>
+
+    <div class="uk-margin uk-text-left">
+        <label class="uk-form-label uk-text-bold uk-text-medium">Location</label>
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-2@s">
+                <label class="uk-form-label">Latitude</label>
+                <input class="uk-input" value="{{lat}}" type="number" step="any" name="lat">
+            </div>
+            <div class="uk-width-1-2@s">
+                <label class="uk-form-label">Longitude</label>
+                <input class="uk-input" value="{{lng}}" type="number" step="any" name="lng">
+            </div>
+        </div>
+    </div>
+
     <div class="uk-margin">
         <div class="uk-form-label uk-text-bold uk-text-medium uk-text-left" id="form-stacked-text">Description</div>
         <div class="uk-form-controls">
-            <textarea class="uk-textarea" id="form-stacked-text" type="text" name="description">{{description}}</textarea>
+            <textarea style="height: 150px;" class="uk-textarea" id="form-stacked-text" type="text"
+                name="description">{{description}}</textarea>
         </div>
     </div>
     <div class="uk-margin">

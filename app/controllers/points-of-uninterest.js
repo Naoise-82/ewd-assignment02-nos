@@ -87,6 +87,23 @@ const PointsOfUninterest = {
   },
 
   searchPOUI: {
+    validate: {
+      payload: {
+        searchTerm: Joi.string().required()
+      },
+      options: {
+        abortEarly: false,
+      },
+      failAction: function (request, h, error) {
+        return h
+          .view("view-all-poui", {
+            title: "Search error",
+            errors: error.details,
+          })
+          .takeover()
+          .code(400);
+      },
+    },
     handler: async function (request, h) {
       try {
         const id = request.auth.credentials.id;
@@ -199,6 +216,23 @@ const PointsOfUninterest = {
 
   // Adds a review to the list of reviews on the view POUI page
   submitReview: {
+    validate: {
+      payload: {
+        comment: Joi.string().required(),
+      },
+      options: {
+        abortEarly: false,
+      },
+      failAction: function (request, h, error) {
+        return h
+          .view("signup", {
+            title: "Settings Update error",
+            errors: error.details,
+          })
+          .takeover()
+          .code(400);
+      },
+    },
     handler: async function (request, h) {
       try {
         const poui = await PointOfUninterest.findById(request.params._id);
@@ -268,7 +302,7 @@ const PointsOfUninterest = {
         const currentUser = await User.findById(userId).lean();
         const userName = currentUser.firstName + " " + currentUser.lastName
         console.log(userName);
-        
+
         //check if the current user has already voted on this POUI before, and ignore the vote if they have
         if (poui.ratings.raters.includes(userName)) {
           console.log("Already Voted");
@@ -297,7 +331,9 @@ const PointsOfUninterest = {
           id: poui._id,
           name: poui.name,
           category: poui.category,
-          description: poui.description
+          description: poui.description,
+          lat: poui.location.lat,
+          lng: poui.location.lng
         });
       } catch (err) {
         return h.view("login", { errors: [{ message: err.message }] });
@@ -311,6 +347,8 @@ const PointsOfUninterest = {
         name: Joi.string().required(),
         category: Joi.string().required(),
         description: Joi.string().required(),
+        lat: Joi.number().required(),
+        lng: Joi.number().required()
       },
       options: {
         abortEarly: false,
@@ -318,7 +356,7 @@ const PointsOfUninterest = {
       failAction: function (_request, h, error) {
         return h
           .view("view-poui/" + poui._id, {
-            title: "Update POUI error",
+            title: "Edit POUI error",
             errors: error.details,
           })
           .takeover()
@@ -332,6 +370,8 @@ const PointsOfUninterest = {
         poui.name = pouiEdit.name;
         poui.category = pouiEdit.category;
         poui.description = pouiEdit.description;
+        poui.location.lat = pouiEdit.lat;
+        poui.location.lng = pouiEdit.lng;
         console.log("POUI Name: " + poui.name);
         await poui.save();
         return h.redirect('/view-poui/' + poui.id);

@@ -36,7 +36,7 @@ const Accounts = {
             failAction: function (request, h, error) {
                 return h
                     .view("signup", {
-                        title: "Settings Update error",
+                        title: "Signup error",
                         errors: error.details,
                     })
                     .takeover()
@@ -134,6 +134,26 @@ const Accounts = {
     },
 
     updateSettings: {
+        validate: {
+            payload: {
+                firstName: Joi.string().required(),
+                lastName: Joi.string().required(),
+                email: Joi.string().email().required(),
+                password: Joi.string().required(),
+            },
+            options: {
+                abortEarly: false,
+            },
+            failAction: function (request, h, error) {
+                return h
+                    .view("settings", {
+                        title: "Settings Update error",
+                        errors: error.details,
+                    })
+                    .takeover()
+                    .code(400);
+            },
+        },
         handler: async function (request, h) {
             try {
                 const userEdit = request.payload;
