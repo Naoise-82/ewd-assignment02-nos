@@ -25,10 +25,12 @@ const Accounts = {
         auth: false,
         validate: {
             payload: {
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required(),
+                firstName: Joi.string(/^[A-Z][a-z]{2,}$/).required(),
+                lastName: Joi.string(/^[A-Z]/).required().min(3),
                 email: Joi.string().email().required(),
-                password: Joi.string().required(),
+                // Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 number and at least
+                // one of this set of special characters: @#!?*£&
+                password: Joi.string(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[@#!?*£&]).{8,})\S$/).required(),
             },
             options: {
                 abortEarly: false,
@@ -136,10 +138,12 @@ const Accounts = {
     updateSettings: {
         validate: {
             payload: {
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required(),
+                firstName: Joi.string(/^[A-Z][a-z]{2,}$/).required(),
+                lastName: Joi.string(/^[A-Z]/).required().min(3),
                 email: Joi.string().email().required(),
-                password: Joi.string().required(),
+                // Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 number and at least
+                // one of this set of special characters: @#!?*£&
+                password: Joi.string(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[@#!?*£&]).{8,})\S$/).required(),
             },
             options: {
                 abortEarly: false,
