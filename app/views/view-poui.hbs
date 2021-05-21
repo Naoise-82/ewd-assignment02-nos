@@ -43,7 +43,7 @@
 
 
     // add a marker at the location and an attached popup with the name
-    var marker = L.marker([{{lat}}, {{lng}}]).addTo(mymap).bindTooltip("{{name}}");
+    var marker = L.marker([{{lat}}, {{lng}}], { win_url: "https://www.google.com/maps/search/?api=1&query={{lat}},{{lng}}" }).addTo(mymap).bindTooltip("{{name}}").on('click', onClick);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -53,6 +53,11 @@
       zoomOffset: -1,
       accessToken: 'pk.eyJ1Ijoibm9zdWxsaXZhbiIsImEiOiJja292ajUzcncwM2gyMm51dHB2MGZtYXhkIn0.Qwbbfz_z5sUYxPlTV1xJ2g'
     }).addTo(mymap);
+
+    function onClick(e) {
+      //console.log(this.options.win_url);
+        window.open(this.options.win_url);
+    }
 
   </script>
 

@@ -135,7 +135,6 @@ const PointsOfUninterest = {
 
         }
 
-
         var coordArrayString = JSON.stringify(pouiCoords);
 
         // split the lat anf lng coordinated into two arrays for recombining into markers on the map
@@ -175,10 +174,17 @@ const PointsOfUninterest = {
       const newPointOfUninterest = new PointOfUninterest({
         name: data.name,
         category: data.category,
-        lat: data.lat,
-        lng: data.lng,
+        location: {
+          lat: data.lat,
+          lng: data.lng,
+        },
         description: data.description,
-        creator: user._id
+        creator: user._id,
+        ratings: {
+          raters: [],
+          thumbsUp: 0,
+          thumbsDown: 0
+        }
       });
       await newPointOfUninterest.save();
       console.log(newPointOfUninterest);
@@ -191,7 +197,11 @@ const PointsOfUninterest = {
       try {
         const poui = await PointOfUninterest.findById(request.params._id).lean();
         const creator = await User.findById(poui.creator);
-        const percentagePositive = Math.round(poui.ratings.thumbsUp / (poui.ratings.thumbsUp + poui.ratings.thumbsDown) * 100);
+        if (poui.ratings.thumbsDown === 0 && poui.ratings.thumbsUp === 0) {
+          var percentagePositive = 0;
+        } else {
+          percentagePositive = Math.round(poui.ratings.thumbsUp / (poui.ratings.thumbsUp + poui.ratings.thumbsDown) * 100);
+        }
         console.log("Viewing POUI " + poui);
         return h.view("view-poui", {
           title: "View POUI",
@@ -309,7 +319,7 @@ const PointsOfUninterest = {
           return h.redirect("/view-poui/" + id);
         } else {
           poui.ratings.raters.push(userName);
-          poui.ratings.thumbsUp = poui.ratings.thumbsUp + 1;
+          poui.ratings.thumbsDown = poui.ratings.thumbsDown + 1;
 
           console.log(poui);
           await poui.save();

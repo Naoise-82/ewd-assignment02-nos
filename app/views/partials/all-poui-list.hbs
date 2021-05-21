@@ -73,14 +73,14 @@
     markers = [];
     var i;
     for (i = 0; i < nameArray.length; i++) {
-        marker = L.marker([latArray[i], lngArray[i]]);
+        marker = L.marker([latArray[i], lngArray[i]], { win_url: "https://www.google.com/maps/search/?api=1&query=" + latArray[i] + "," + lngArray[i]});
         markers.push(marker);
     }
 
     console.log(markers)
     // add the markers to the map
     for (i = 0; i < markers.length; i++) {
-        markers[i].addTo(mymap).bindTooltip(nameArray[i]);
+        markers[i].addTo(mymap).bindTooltip(nameArray[i]).on('click', onClick);
     }
     
 
@@ -92,5 +92,10 @@
         zoomOffset: -1,
         accessToken: 'pk.eyJ1Ijoibm9zdWxsaXZhbiIsImEiOiJja292ajUzcncwM2gyMm51dHB2MGZtYXhkIn0.Qwbbfz_z5sUYxPlTV1xJ2g'
     }).addTo(mymap);
+
+    function onClick(e) {
+      //console.log(this.options.win_url);
+        window.open(this.options.win_url);
+    }
 
 </script>
