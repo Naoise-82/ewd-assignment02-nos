@@ -27,15 +27,7 @@
         "location": {
             "lat": 52.229414,
             "lng": -8.493308
-        },
-        "creator": "Naoise O'Sullivan",
-        "ratings": {
-            "raters": [
-            ],
-            "thumbsUp": 0,
-            "thumbsDown": 0
-        },
-        "reviews": []
+        }
     },
     "newUser": {
         "firstName": "Maggie",

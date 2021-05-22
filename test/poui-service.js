@@ -52,28 +52,27 @@ class POUIService {
         }
     }
 
-
-    async makeDonation(id, donation) {
+    async getPOUIs(id) {
         try {
-            const response = await axios.post(this.baseUrl + "/api/candidates/" + id + "/donations", donation);
+            const response = await axios.get(this.baseUrl + "/api/users/" + id + "/points-of-uninterest");
             return response.data;
         } catch (e) {
             return null;
         }
     }
 
-    async getDonations(id) {
+    async deleteAllPOUIs() {
         try {
-            const response = await axios.get(this.baseUrl + "/api/candidates/" + id + "/donations");
+            const response = await axios.delete(this.baseUrl + "/api/points-of-uninterest");
             return response.data;
         } catch (e) {
             return null;
         }
     }
 
-    async deleteAllDonations() {
+    async createPOUI(id, poui) {
         try {
-            const response = await axios.delete(this.baseUrl + "/api/donations");
+            const response = await axios.post(this.baseUrl + "/api/users/" + id + "/points-of-uninterest", poui);
             return response.data;
         } catch (e) {
             return null;

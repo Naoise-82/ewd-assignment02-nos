@@ -1,4 +1,5 @@
 const Users = require("./app/api/users");
+const PointsOfUninterest = require("./app/api/points-of-uninterest");
 
 module.exports = [
 
@@ -8,10 +9,9 @@ module.exports = [
   { method: "DELETE", path: "/api/users/{id}", config: Users.deleteOne },
   { method: "DELETE", path: "/api/users", config: Users.deleteAll },
 
-  /*
-  { method: "GET", path: "/api/donations", config: Donations.findAll },
-  { method: "GET", path: "/api/candidates/{id}/donations", config: Donations.findByCandidate },
-  { method: "POST", path: "/api/candidates/{id}/donations", config: Donations.makeDonation },
-  { method: "DELETE", path: "/api/donations", config: Donations.deleteAll },
-  */
+  
+  { method: "GET", path: "/api/points-of-uninterest", config: PointsOfUninterest.findAll },
+  { method: "GET", path: "/api/user/{id}/points-of-uninterest", config: PointsOfUninterest.findByCreator },
+  { method: "POST", path: "/api/users/{id}/points-of-uninterest", config: PointsOfUninterest.createPOUI },
+  { method: "DELETE", path: "/api/points-of-uninterest", config: PointsOfUninterest.deleteAll },
 ];
