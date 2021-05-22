@@ -1,5 +1,5 @@
 {
-    "pouiService": "http://localhost:3443",
+    "pouiService": "http://localhost:3000",
     "users": [
         {
             "firstName": "Homer",
@@ -20,6 +20,23 @@
             "password": "secret"
         }
     ],
+    "pouis": {
+        "name": "Uninteresting Oak",
+        "category": "Average Tree",
+        "description": "Not much going on at this tree.",
+        "location": {
+            "lat": 52.229414,
+            "lng": -8.493308
+        },
+        "creator": "Naoise O'Sullivan",
+        "ratings": {
+            "raters": [
+            ],
+            "thumbsUp": 0,
+            "thumbsDown": 0
+        },
+        "reviews": []
+    },
     "newUser": {
         "firstName": "Maggie",
         "lastName": "Simpson",

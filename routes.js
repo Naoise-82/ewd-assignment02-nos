@@ -11,7 +11,7 @@ module.exports = [
   { method: "POST", path: "/signup", config: Accounts.signup },
   { method: "POST", path: "/login", config: Accounts.login },
 
-  { method: "GET", path: "/home", config: PointsOfUninterest.home },
+  { method: "GET", path: "/create-poui-page", config: PointsOfUninterest.createPOUIPage },
   { method: "GET", path: "/report", config: PointsOfUninterest.report },
   { method: "GET", path: "/view-all-poui", config: PointsOfUninterest.viewAllPOUI },
   { method: "POST", path: "/search-poui", config: PointsOfUninterest.searchPOUI },

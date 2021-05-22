@@ -11,9 +11,9 @@ const { func } = require("@hapi/joi");
 
 const PointsOfUninterest = {
 
-  home: {
+  createPOUIPage: {
     handler: function (_request, h) {
-      return h.view("home", { title: "Create & Manage Points of Uninterest" });
+      return h.view("create-poui-page", { title: "Create A Point of Uninterest" });
     },
   },
 
@@ -43,17 +43,20 @@ const PointsOfUninterest = {
 
         var pouiCoords = [];
         var pouiNames = [];
+        var pouiIds = [];
 
         var i;
         for (i = 0; i < pointsOfUninterest.length; i++) {
           var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
           var pouiName = pointsOfUninterest[i].name;
+          var pouiId = pointsOfUninterest[i]._id;
           pouiNames.push(pouiName);
           pouiCoords.push(latLng);
+          pouiIds.push(pouiId);
 
         }
 
-        // convert the coordinates into a string usable by handlebars
+        // convert the coordinates into a string usable by handlebars fr setting the bounds of the map
         var coordArrayString = JSON.stringify(pouiCoords);
 
         // split the lat and lng coordinates into two arrays for recombining into markers at the front-end script
@@ -77,6 +80,7 @@ const PointsOfUninterest = {
           pointsOfUninterest: pointsOfUninterest,
           coordArrayString: coordArrayString,
           pouiNames: pouiNames,
+          pouiIds: pouiIds,
           latArrayString: latArrayString,
           lngArrayString: lngArrayString
         });
@@ -184,7 +188,8 @@ const PointsOfUninterest = {
           raters: [],
           thumbsUp: 0,
           thumbsDown: 0
-        }
+        },
+        reviews: []
       });
       await newPointOfUninterest.save();
       console.log(newPointOfUninterest);

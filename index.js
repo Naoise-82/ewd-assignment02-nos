@@ -17,12 +17,12 @@ if (result.error) {
 }
 
 const server = Hapi.server({
-  port: 3443,
-  tls: {
+  port: process.env.PORT || 3000,
+  /*tls: {
     key: fs.readFileSync('keys/private/webserver.key'),
     cert: fs.readFileSync('keys/webserver.crt')
   },
-  routes: { cors: true },
+  routes: { cors: true },*/
   });
 
   async function init() {
@@ -30,20 +30,6 @@ const server = Hapi.server({
     await server.register(Vision);
     await server.register(Cookie);
     server.validator(require("@hapi/joi"));
-  
-    server.auth.strategy('session', 'cookie', {
-      cookie: {
-        name: process.env.cookie_name,
-        password: process.env.cookie_password,
-        isSecure: false,
-      },
-      redirectTo: '/',
-    });
-  
-    server.auth.default('session');
-  
-    server.route(require('./routes'));
-    
     server.views({
       engines: {
         hbs: Handlebars,
@@ -55,7 +41,17 @@ const server = Hapi.server({
       layout: true,
       isCached: false,
     });
-  
+    server.auth.strategy('session', 'cookie', {
+      cookie: {
+        name: process.env.cookie_name,
+        password: process.env.cookie_password,
+        isSecure: false,
+      },
+      redirectTo: '/',
+    });
+    server.auth.default('session');
+    server.route(require('./routes'));
+    server.route(require('./routes-api'))
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
   }

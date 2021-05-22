@@ -57,6 +57,10 @@
     var nameArray = "{{pouiNames}}".split(',');
     console.log(nameArray);
 
+    //convert the pouiIds string into an array
+    var pouiIdArray = "{{pouiIds}}".split(',');
+    console.log(pouiIdArray);
+
     // some quite cumbersome string manipulation and conversion back an array for the lat and lng arrays
     var latArrayString = "{{latArrayString}}";
     latArrayString = latArrayString.substring(1, latArrayString.length-1);
@@ -73,8 +77,10 @@
     markers = [];
     var i;
     for (i = 0; i < nameArray.length; i++) {
-        marker = L.marker([latArray[i], lngArray[i]], { win_url: "https://www.google.com/maps/search/?api=1&query=" + latArray[i] + "," + lngArray[i]});
+        marker = L.marker([latArray[i], lngArray[i]], { win_url: "./view-poui/" + pouiIdArray[i] });
         markers.push(marker);
+        // win_url: "https://www.google.com/maps/search/?api=1&query=" + latArray[i] + "," + lngArray[i]
+        // win_url: "./view-poui/" + pouiIdArray[i]
     }
 
     console.log(markers)
