@@ -20,15 +20,17 @@
             "password": "secret"
         }
     ],
-    "pouis": {
-        "name": "Uninteresting Oak",
-        "category": "Average Tree",
-        "description": "Not much going on at this tree.",
-        "location": {
-            "lat": 52.229414,
-            "lng": -8.493308
+    "pouis": [
+        {
+            "name": "Uninteresting Oak",
+            "category": "Average Tree",
+            "description": "Not much going on at this tree.",
+            "location": {
+                "lat": 52.229414,
+                "lng": -8.493308
+            }
         }
-    },
+    ],
     "newUser": {
         "firstName": "Maggie",
         "lastName": "Simpson",

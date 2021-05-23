@@ -18,11 +18,6 @@ if (result.error) {
 
 const server = Hapi.server({
   port: process.env.PORT || 3000,
-  /*tls: {
-    key: fs.readFileSync('keys/private/webserver.key'),
-    cert: fs.readFileSync('keys/webserver.crt')
-  },
-  routes: { cors: true },*/
   });
 
   async function init() {

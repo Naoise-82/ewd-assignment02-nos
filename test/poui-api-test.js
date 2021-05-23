@@ -23,9 +23,25 @@ suite("POUI API tests", function () {
         console.log(returnedUser);
         await pouiService.createPOUI(returnedUser._id, pouis[0]);
         const returnedPOUIs = await pouiService.getPOUIs(returnedUser._id);
-        console.log(returnedPOUIs);
         assert.equal(returnedPOUIs.length, 1);
         assert(_.some([returnedPOUIs[0], pouis[0], "returned poui must be a superset of poui"]))
+    });
+
+    test("delete a point of uninterest", async function () {
+
+        const returnedUser = await pouiService.createUser(newUser);
+        await pouiService.createPOUI(returnedUser._id, pouis[0]);
+
+        const p1 = await pouiService.getPOUIs(returnedUser._id);
+        assert.equal(p1.length, 1);
+
+        console.log(p1[0]._id);
+
+        await pouiService.deletOnePOUI(p1[0]._id);
+
+        const p2 = await pouiService.getPOUIs(returnedUser._id);
+        console.log(p2);
+        assert.equal(p2.length, 0);
     });
 
 })

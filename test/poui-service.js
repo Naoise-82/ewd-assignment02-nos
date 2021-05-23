@@ -61,6 +61,15 @@ class POUIService {
         }
     }
 
+    async getOnePOUI(id) {
+        try{
+        const response = await axios.get(this.baseUrl + "/api/points-of-uninterest/" + id);
+        return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
     async deleteAllPOUIs() {
         try {
             const response = await axios.delete(this.baseUrl + "/api/points-of-uninterest");
@@ -78,6 +87,15 @@ class POUIService {
             return null;
         }
     }
+
+    async deletOnePOUI(id) {
+        try {
+          const response = await axios.delete(this.baseUrl + "/api/points-of-uninterest/" + id);
+          return response.data;
+        } catch (e) {
+          return null;
+        }
+      }
 }
 
 module.exports = POUIService;

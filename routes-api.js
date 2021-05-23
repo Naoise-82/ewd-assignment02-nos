@@ -11,7 +11,8 @@ module.exports = [
 
   
   { method: "GET", path: "/api/points-of-uninterest", config: PointsOfUninterest.findAll },
-  { method: "GET", path: "/api/user/{id}/points-of-uninterest", config: PointsOfUninterest.findByCreator },
+  { method: "GET", path: "/api/users/{id}/points-of-uninterest", config: PointsOfUninterest.findByCreator },
   { method: "POST", path: "/api/users/{id}/points-of-uninterest", config: PointsOfUninterest.createPOUI },
   { method: "DELETE", path: "/api/points-of-uninterest", config: PointsOfUninterest.deleteAll },
+  { method: "DELETE", path: "/api/points-of-uninterest/{id}", config: PointsOfUninterest.deleteOne },
 ];

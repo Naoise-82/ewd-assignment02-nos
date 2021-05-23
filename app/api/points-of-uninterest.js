@@ -42,6 +42,17 @@ const PointsOfUninterest = {
             poui = await poui.save();
             return poui;
         },
+    },
+
+    deleteOne: {
+        auth: false,
+        handler: async function (request, h) {
+            const poui = await PointOfUninterest.deleteOne({ id: request.payload });
+            if (poui) {
+                return {success: true };
+            }
+            return Boom.notFound("No POUI with this id");
+        },
     }
 
 }
