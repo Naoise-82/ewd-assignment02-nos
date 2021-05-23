@@ -1,5 +1,2 @@
 node_modules
 .env
-app/api
-test
-routes-api.js
