@@ -13,6 +13,7 @@ module.exports = [
   { method: "GET", path: "/api/points-of-uninterest", config: PointsOfUninterest.findAll },
   { method: "GET", path: "/api/users/{id}/points-of-uninterest", config: PointsOfUninterest.findByCreator },
   { method: "POST", path: "/api/users/{id}/points-of-uninterest", config: PointsOfUninterest.createPOUI },
+  { method: "POST", path: "/api/points-of-uninterest/{id}/users/{id}", config: PointsOfUninterest.voteOnPOUI },
   { method: "DELETE", path: "/api/points-of-uninterest", config: PointsOfUninterest.deleteAll },
   { method: "DELETE", path: "/api/points-of-uninterest/{id}", config: PointsOfUninterest.deleteOne },
 ];

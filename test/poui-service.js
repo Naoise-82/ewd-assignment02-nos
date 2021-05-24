@@ -62,9 +62,28 @@ class POUIService {
     }
 
     async getOnePOUI(id) {
-        try{
-        const response = await axios.get(this.baseUrl + "/api/points-of-uninterest/" + id);
-        return response.data;
+        try {
+            const response = await axios.get(this.baseUrl + "/api/points-of-uninterest/" + id);
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+
+    async createPOUI(id, poui) {
+        try {
+            const response = await axios.post(this.baseUrl + "/api/users/" + id + "/points-of-uninterest", poui);
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async deletOnePOUI(id) {
+        try {
+            const response = await axios.delete(this.baseUrl + "/api/points-of-uninterest/" + id);
+            return response.data;
         } catch (e) {
             return null;
         }
@@ -79,23 +98,14 @@ class POUIService {
         }
     }
 
-    async createPOUI(id, poui) {
+    async voteOnPOUI(pouiId, userId, comment) {
         try {
-            const response = await axios.post(this.baseUrl + "/api/users/" + id + "/points-of-uninterest", poui);
+            const response = await axios.post(this.baseUrl + "/api/points-of-uninterest/" + pouiId + "/users/" + userId, comment)
             return response.data;
         } catch (e) {
             return null;
         }
     }
 
-    async deletOnePOUI(id) {
-        try {
-          const response = await axios.delete(this.baseUrl + "/api/points-of-uninterest/" + id);
-          return response.data;
-        } catch (e) {
-          return null;
-        }
-      }
 }
-
 module.exports = POUIService;

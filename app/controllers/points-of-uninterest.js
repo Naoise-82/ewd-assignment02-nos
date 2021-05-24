@@ -93,7 +93,8 @@ const PointsOfUninterest = {
   searchPOUI: {
     validate: {
       payload: {
-        searchTerm: Joi.string().required()
+        searchTerm: Joi.string().empty(''),
+        category: Joi.string().allow('Average Tree','Mundane River','Mediocre Walkway','Bland National Monument')
       },
       options: {
         abortEarly: false,
@@ -129,19 +130,23 @@ const PointsOfUninterest = {
         // the same code as for viewAllPOUI() above reused after the serch has refined the POUI list
         var pouiCoords = [];
         var pouiNames = [];
+        var pouiIds = [];
 
         var i;
         for (i = 0; i < pointsOfUninterest.length; i++) {
           var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
           var pouiName = pointsOfUninterest[i].name;
+          var pouiId = pointsOfUninterest[i]._id;
           pouiNames.push(pouiName);
           pouiCoords.push(latLng);
+          pouiIds.push(pouiId);
 
         }
 
+        // convert the coordinates into a string usable by handlebars fr setting the bounds of the map
         var coordArrayString = JSON.stringify(pouiCoords);
 
-        // split the lat anf lng coordinated into two arrays for recombining into markers on the map
+        // split the lat and lng coordinates into two arrays for recombining into markers at the front-end script
         var latArray = [];
         var lngArray = [];
 
@@ -152,7 +157,7 @@ const PointsOfUninterest = {
           lngArray.push(lng);
         }
 
-        // convert the arrays to literal strings
+        // convert the arrays to literal strings containing [] brackets
         var latArrayString = JSON.stringify(latArray);
         var lngArrayString = JSON.stringify(lngArray);
 
@@ -161,6 +166,7 @@ const PointsOfUninterest = {
           pointsOfUninterest: pointsOfUninterest,
           coordArrayString: coordArrayString,
           pouiNames: pouiNames,
+          pouiIds: pouiIds,
           latArrayString: latArrayString,
           lngArrayString: lngArrayString
         });

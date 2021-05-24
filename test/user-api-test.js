@@ -7,7 +7,7 @@ const _ = require("lodash");
 
 suite("User API tests", function () {
   let users = fixtures.users;
-  let newUser = fixtures.newUser;
+  let newUsers = fixtures.newUsers;
 
   const pouiService = new POUIService(fixtures.pouiService);
 
@@ -20,13 +20,13 @@ suite("User API tests", function () {
   });
 
   test("create a user", async function () {
-    const returnedUser = await pouiService.createUser(newUser);
+    const returnedUser = await pouiService.createUser(newUsers[0]);
     assert(_.some([returnedUser], newUser), "returnedUser must be a superset of newUser");
     assert.isDefined(returnedUser._id);
   });
 
   test("get user", async function () {
-    const u1 = await pouiService.createUser(newUser);
+    const u1 = await pouiService.createUser(newUsers[0]);
     const u2 = await pouiService.getUser(u1._id);
     assert.deepEqual(u1, u2);
   });
@@ -39,7 +39,7 @@ suite("User API tests", function () {
   });
 
   test("delete a user", async function () {
-    let u = await pouiService.createUser(newUser);
+    let u = await pouiService.createUser(newUsers[0]);
     assert(u._id != null);
     await pouiService.deleteOneUser(u._id);
     u = await pouiService.getUser(u._id);

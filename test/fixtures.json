@@ -2,22 +2,22 @@
     "pouiService": "http://localhost:3000",
     "users": [
         {
-            "firstName": "Homer",
-            "lastName": "Simpson",
-            "email": "homer@simpson.com",
-            "password": "secret"
+            "firstName": "Larry",
+            "lastName": "David",
+            "email": "larry@david.com",
+            "password": "curbyourenthusiasm"
         },
         {
-            "firstName": "Marge",
-            "lastName": "Simpson",
-            "email": "marge@simpson.com",
-            "password": "secret"
+            "firstName": "Jerry",
+            "lastName": "Seinfeld",
+            "email": "jerry@seinfeld.com",
+            "password": "superman"
         },
         {
-            "firstName": "Bart",
-            "lastName": "Simpson",
-            "email": "bart@simpson.com",
-            "password": "secret"
+            "firstName": "Cosmo",
+            "lastName": "Kramer",
+            "email": "cosmo@kramer.com",
+            "password": "kramericaenterprises"
         }
     ],
     "pouis": [
@@ -29,12 +29,49 @@
                 "lat": 52.229414,
                 "lng": -8.493308
             }
+        },
+        {
+            "name": "Very PLain Pine",
+            "category": "Average Tree",
+            "description": "What a remarkably uninspring tree.",
+            "location": {
+                "lat": 52.229362,
+                "lng": -8.494654
+            }
+        },
+        {
+            "name": "Completely Boring Cedar",
+            "category": "Average Tree",
+            "description": "I've seen better.",
+            "location": {
+                "lat": 52.114956,
+                "lng": -8.795412
+            }
         }
     ],
-    "newUser": {
-        "firstName": "Maggie",
-        "lastName": "Simpson",
-        "email": "maggie@simpson.com",
-        "password": "secret"
+    "reviewComments": [
+        {
+            "comment": "What a waste of time."
+        },
+        {
+            "comment": "Not worth it at all."
+        },
+        {
+            "comment": "Left after 5 minutes out of boredom."
+        }
+    ],
+    "newUsers": [
+    {
+        "firstName": "Angus",
+        "lastName": "Young",
+        "email": "angus@young.au",
+        "password": "highvoltage"
+    },
+    {
+        "firstName": "Malcom",
+        "lastName": "Young",
+        "email": "malcom@young.au",
+        "password": "powerage"
     }
+]
 }
