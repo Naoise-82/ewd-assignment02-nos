@@ -3,6 +3,8 @@
 const User = require('../models/user');
 const Boom = require('@hapi/boom');
 const Joi = require('@hapi/joi');
+
+// hashing and salting
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -25,10 +27,12 @@ const Accounts = {
         auth: false,
         validate: {
             payload: {
-                firstName: Joi.string().required(),
+                firstName: Joi.string().regex(/^[A-Z][a-z]{2,}$/).required(),
                 lastName: Joi.string().required().min(3),
                 email: Joi.string().email().required(),
-                password: Joi.string().required(),
+                // Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 number and at least
+                // one of this set of special characters: @#!?*£&
+                password: Joi.string().regex(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[@#!?*£&]).{8,})\S$/).required(),
             },
             options: {
                 abortEarly: false,
@@ -62,7 +66,7 @@ const Accounts = {
                 });
                 user = await newUser.save();
                 request.cookieAuth.set({ id: user.id });
-                return h.redirect("/home");
+                return h.redirect("/report");
             } catch (err) {
                 return h.view("signup", { errors: [{ message: err.message }] });
             }
@@ -136,12 +140,12 @@ const Accounts = {
     updateSettings: {
         validate: {
             payload: {
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required().min(3),
+                firstName: Joi.string().regex(/^[A-Z][a-z]{2,}$/).required(),
+                lastName: Joi.string().regex(/^[A-Z][a-z]$/).required().min(3),
                 email: Joi.string().email().required(),
                 // Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 number and at least
                 // one of this set of special characters: @#!?*£&
-                password: Joi.string().required(),
+                password: Joi.string().regex(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[@#!?*£&]).{8,})\S$/).required(),
             },
             options: {
                 abortEarly: false,

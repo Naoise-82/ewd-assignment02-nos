@@ -25,7 +25,7 @@
         "one": {
             "name": "Uninteresting Oak",
             "category": "Average Tree",
-            "description": "Praesent egestas dui id urna efficitur, sed euismod ligula sagittis. Curabitur non libero purus. Suspendisse potenti. Nam sem tellus, lacinia nec massa eu, ultricies viverra urna. Proin facilisis erat in luctus elementum. Nulla facilisi. Sed consectetur nunc et ante viverra vestibulum. Vestibulum quam est, imperdiet ut tempus vel, auctor nec odio. Vestibulum ac tempus nulla. In mauris diam, pretium eu diam quis, egestas dictum eros. Duis et aliquet erat.",
+            "description": "Praesent egestas dui id urna efficitur, sed euismod ligula sagittis. Curabitur non libero purus. Suspendisse potenti. Nam sem tellus, lacinia nec massa eu, ultricies viverra urna.",
             "location": {
                 "lat": 52.229414,
                 "lng": -8.493308
@@ -36,8 +36,8 @@
                 "raters": [
                     "Naoise O'Sullivan"
                 ],
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 2,
+                "thumbsDown": 2
             },
             "reviews": [
                 {
@@ -58,7 +58,7 @@
         "two": {
             "name": "Boring Ash",
             "category": "Average Tree",
-            "description": "Curabitur laoreet scelerisque scelerisque. Phasellus orci est, vulputate vitae justo ac, rhoncus venenatis nulla. Aliquam vitae orci ullamcorper, ornare erat at, dictum tellus. Nullam et nisl nec est auctor auctor. Curabitur efficitur nunc nibh, non cursus quam bibendum eget. Nunc placerat pellentesque dolor, sit amet feugiat purus bibendum nec. Aliquam elementum, mauris eget dictum fermentum, est dui aliquet orci, eu malesuada orci dui sed orci. Donec condimentum ex eget tellus luctus, luctus imperdiet nibh consectetur. Etiam sem nisi, varius nec viverra ut, faucibus lacinia est. Sed faucibus est eget posuere facilisis. Donec pulvinar erat ac suscipit fermentum. Fusce hendrerit facilisis est a bibendum. Sed sagittis elit libero, vitae laoreet erat blandit sit amet.",
+            "description": "Curabitur laoreet scelerisque scelerisque. Phasellus orci est, vulputate vitae justo ac, rhoncus venenatis nulla. Aliquam vitae orci ullamcorper, ornare erat at, dictum tellus. Nullam et nisl nec est auctor auctor. Curabitur efficitur nunc nibh, non cursus quam bibendum eget. Nunc placerat pellentesque dolor, sit amet feugiat purus bibendum nec.",
             "location": {
                 "lat": 52.271557,
                 "lng": -8.522062
@@ -66,8 +66,8 @@
             "imageURL": "/images/tree02.jpg",
             "creator": "->users.naoise",
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 5,
+                "thumbsDown": 6
             },
             "reviews": [
                 {
@@ -87,7 +87,7 @@
         "three": {
             "name": "Bland Cedar",
             "category": "Average Tree",
-            "description": "Duis eu lacus at magna vestibulum porta. Nunc eleifend risus scelerisque enim convallis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida erat ut velit vulputate, vel pulvinar turpis facilisis. Integer et bibendum libero. Donec efficitur sagittis porta. Ut viverra, massa eu vehicula malesuada, felis elit tincidunt ipsum, ac ultrices nibh augue eget metus.",
+            "description": "Duis eu lacus at magna vestibulum porta. Nunc eleifend risus scelerisque enim convallis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida erat ut velit vulputate, vel pulvinar turpis facilisis.",
             "imageURL": "/images/tree03.jpg",
             "location": {
                 "lat": 52.266618,
@@ -95,8 +95,8 @@
             },
             "creator": "->users.naoise",
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 2,
+                "thumbsDown": 1
             },
             "reviews": [
                 {
@@ -116,7 +116,7 @@
         "four": {
             "name": "Uninspiring Brook",
             "category": "Mundane River",
-            "description": "Maecenas ut quam ac nulla convallis aliquam sit amet vitae tellus. Nam at augue magna. Phasellus non mattis enim. Donec vitae ultricies lorem. Ut pellentesque porta augue eu lacinia. Pellentesque vestibulum augue at blandit interdum. Aliquam id tempor ex, ut elementum leo. Aliquam semper, nisi ac aliquet gravida, purus purus gravida elit, ac rhoncus enim mauris vitae lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam vestibulum euismod neque eu rutrum. Curabitur rhoncus diam ac gravida porta. Etiam et orci porttitor, posuere est nec, posuere arcu. Nullam ut lacinia lectus. Curabitur ut dapibus tellus, nec hendrerit sem. Aliquam erat volutpat.",
+            "description": "Maecenas ut quam ac nulla convallis aliquam sit amet vitae tellus. Nam at augue magna. Phasellus non mattis enim. Donec vitae ultricies lorem. Ut pellentesque porta augue eu lacinia. Pellentesque vestibulum augue at blandit interdum.",
             "location": {
                 "lat": 52.219805,
                 "lng": -8.433337
@@ -126,8 +126,8 @@
                 "raters": [
                     "Naoise O'Sullivan"
                 ],
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 4,
+                "thumbsDown": 4
             },
             "reviews": [
                 {
@@ -154,8 +154,8 @@
             },
             "creator": "->users.tad",
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 10,
+                "thumbsDown": 8
             },
             "reviews": [
                 {
@@ -175,15 +175,15 @@
         "six": {
             "name": "Eye-closing Waterway",
             "category": "Mundane River",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer magna lacus, vestibulum et lorem sit amet, porttitor vestibulum enim. Donec mattis tempus hendrerit. Aliquam sit amet rutrum ligula. Suspendisse sodales purus diam, quis laoreet turpis cursus at. Vestibulum aliquet diam cursus justo semper interdum. Curabitur at bibendum leo. In dapibus, neque nec imperdiet accumsan, justo libero suscipit nisi, ac elementum nulla nisl ac diam. Curabitur ullamcorper sit amet lorem condimentum sagittis. Praesent tempus leo nisl, eu gravida odio tempus ac. Pellentesque imperdiet scelerisque ex ac fermentum. Sed luctus sem ipsum, non mollis neque convallis ut. Integer suscipit finibus dignissim. Fusce auctor massa diam, eu consequat nunc tristique sit amet.",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer magna lacus, vestibulum et lorem sit amet, porttitor vestibulum enim. Donec mattis tempus hendrerit. Aliquam sit amet rutrum ligula. Suspendisse sodales purus diam, quis laoreet turpis cursus at. Vestibulum aliquet diam cursus justo semper interdum. Curabitur at bibendum leo.",
             "creator": "->users.tad",
             "location": {
                 "lat": 52.165925,
                 "lng": -8.189787
             },
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 20,
+                "thumbsDown": 15
             },
             "reviews": [
                 {
@@ -203,15 +203,15 @@
         "seven": {
             "name": "Uneventful Stroll",
             "category": "Mediocre Walkway",
-            "description": "Aliquam semper eros sit amet tellus bibendum, a tempor nunc condimentum. Ut condimentum sem sit amet maximus convallis. Ut at fringilla diam. Ut nec augue enim. Donec vehicula, mi non finibus commodo, dolor risus tincidunt ligula, a egestas metus mi vel elit. Phasellus efficitur, ante non vestibulum molestie, risus diam mollis metus, a consequat nunc ipsum vel tellus. Morbi a ipsum suscipit, mattis tortor quis, efficitur lectus. Donec ipsum massa, scelerisque sit amet nibh in, placerat commodo neque. Mauris condimentum lectus eu ipsum sollicitudin auctor. In egestas lorem ut mi sodales malesuada. Nullam a malesuada nisl, et tincidunt leo.",
+            "description": "Aliquam semper eros sit amet tellus bibendum, a tempor nunc condimentum. Ut condimentum sem sit amet maximus convallis. Ut at fringilla diam. Ut nec augue enim.",
             "creator": "->users.chris",
             "location": {
                 "lat": 52.163889,
                 "lng": -8.808270
             },
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 30,
+                "thumbsDown": 25
             },
             "reviews": [
                 {
@@ -231,15 +231,15 @@
         "eight": {
             "name": "Sleepy Hike",
             "category": "Mediocre Walkway",
-            "description": "Praesent viverra nibh ac dui ultricies pretium. Phasellus vehicula imperdiet ipsum. Duis eleifend, nisl sit amet interdum dignissim, tellus felis auctor nisi, vel ullamcorper mi est in quam. Ut a congue felis. Sed vel diam et mi sollicitudin mollis. Etiam a aliquam ligula. Morbi rutrum, libero nec placerat interdum, magna quam congue nulla, vitae tempor leo leo sit amet lacus. Donec rutrum semper placerat. Vestibulum orci lorem, viverra et malesuada ac, aliquam vel nulla. Sed non nisl in nibh feugiat scelerisque.",
+            "description": "Praesent viverra nibh ac dui ultricies pretium. Phasellus vehicula imperdiet ipsum. Duis eleifend, nisl sit amet interdum dignissim, tellus felis auctor nisi, vel ullamcorper mi est in quam. Ut a congue felis.",
             "creator": "->users.chris",
             "location": {
                 "lat": 52.117357,
                 "lng": -8.495896
             },
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 21,
+                "thumbsDown": 25
             },
             "reviews": [
                 {
@@ -259,15 +259,15 @@
         "nine": {
             "name": "Yawnful Park",
             "category": "Mediocre Walkway",
-            "description": "Cras porta lacus sed vulputate dignissim. Pellentesque luctus quam nulla, eu tristique nisl sagittis quis. Nulla in sapien ac velit sodales facilisis id mattis ligula. Maecenas pellentesque metus eget urna egestas iaculis. Vestibulum vitae tortor quis nunc dignissim cursus vitae quis nulla. Nulla sollicitudin lorem lacus, sit amet luctus lectus tincidunt in. Nunc bibendum, nibh vitae congue vulputate, nibh erat iaculis orci, non congue augue felis quis ex. Quisque tincidunt mi erat, eget scelerisque velit malesuada eget. Integer lorem diam, maximus eu dui eget, porta cursus purus. Nulla vitae nulla dapibus justo finibus luctus in sit amet leo. Mauris tellus justo, sollicitudin mollis interdum in, ultricies quis nulla. Pellentesque et tortor placerat, tempus justo id, tempus sem. Aliquam erat volutpat.",
+            "description": "Cras porta lacus sed vulputate dignissim. Pellentesque luctus quam nulla, eu tristique nisl sagittis quis. Nulla in sapien ac velit sodales facilisis id mattis ligula. Maecenas pellentesque metus eget urna egestas iaculis. Vestibulum vitae tortor quis nunc dignissim cursus vitae quis nulla. Nulla sollicitudin lorem lacus, sit amet.",
             "creator": "->users.chris",
             "location": {
                 "lat": 52.117482,
                 "lng": -8.357015
             },
             "ratings": {
-                "thumbsUp": 100,
-                "thumbsDown": 50
+                "thumbsUp": 18,
+                "thumbsDown": 6
             },
             "reviews": [
                 {

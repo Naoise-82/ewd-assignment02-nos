@@ -32,17 +32,13 @@
     <p>{{description}}</p>
   </div>
 
-  <!-- <div class="uk-margin uk-margin-auto uk-width-1-2@s uk-text-center uk-card-default uk-padding-small">
-    <img alt="poui image" src="{{imageURL}}" />
-  </div> -->
-
   <div class="uk-margin uk-margin-auto uk-card-default" id="mapid" style="height: 400px; width: 600px;"></div>
   <script>
     // set the map to centre on the location of the coordinates from the POUI
     var mymap = L.map('mapid').setView([{{lat}}, {{lng}}], 13);
 
 
-    // add a marker at the location and an attached popup with the name
+    // add a marker at the location and an attached tooltip with the name for mouse-over
     var marker = L.marker([{{lat}}, {{lng}}], { win_url: "https://www.google.com/maps/search/?api=1&query={{lat}},{{lng}}" }).addTo(mymap).bindTooltip("{{name}}").on('click', onClick);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {

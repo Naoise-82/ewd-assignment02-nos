@@ -28,7 +28,13 @@
             "location": {
                 "lat": 52.229414,
                 "lng": -8.493308
-            }
+            },
+            "ratings": {
+                "raters": [],
+                "thumbsUp": 0,
+                "thumbsDown": 0
+            },
+            "reviews": []
         },
         {
             "name": "Very PLain Pine",
@@ -37,7 +43,13 @@
             "location": {
                 "lat": 52.229362,
                 "lng": -8.494654
-            }
+            },
+            "ratings": {
+                "raters": [],
+                "thumbsUp": 0,
+                "thumbsDown": 0
+            },
+            "reviews": []
         },
         {
             "name": "Completely Boring Cedar",
@@ -46,7 +58,13 @@
             "location": {
                 "lat": 52.114956,
                 "lng": -8.795412
-            }
+            },
+            "ratings": {
+                "raters": [],
+                "thumbsUp": 0,
+                "thumbsDown": 0
+            },
+            "reviews": []
         }
     ],
     "reviewComments": [

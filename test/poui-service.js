@@ -98,9 +98,18 @@ class POUIService {
         }
     }
 
-    async voteOnPOUI(pouiId, userId, comment) {
+    async voteOnPOUI(pouiId, userId, voteValue) {
         try {
-            const response = await axios.post(this.baseUrl + "/api/points-of-uninterest/" + pouiId + "/users/" + userId, comment)
+            const response = await axios.post(this.baseUrl + "/api/users/" + userId + "/points-of-uninterest/" + pouiId, voteValue)
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async reviewPOUI(userId, pouiId, comment) {
+        try {
+            const response = await axios.post(this.baseUrl + "/api/users/" + userId + "/points-of-uninterest/" + pouiId, comment);
             return response.data;
         } catch (e) {
             return null;

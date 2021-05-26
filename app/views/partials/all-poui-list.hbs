@@ -57,11 +57,11 @@
     var nameArray = "{{pouiNames}}".split(',');
     console.log(nameArray);
 
-    //convert the pouiIds string into an array
+    //convert the pouiIds string passed in via handlebars into an array
     var pouiIdArray = "{{pouiIds}}".split(',');
     console.log(pouiIdArray);
 
-    // some quite cumbersome string manipulation and conversion back an array for the lat and lng arrays
+    // some quite cumbersome string manipulation and conversion back into the lat and lng arrays
     var latArrayString = "{{latArrayString}}";
     latArrayString = latArrayString.substring(1, latArrayString.length-1);
     console.log(latArrayString);
@@ -75,8 +75,8 @@
 
     // build an array of markers from the coordinates and names
     markers = [];
-    var i;
-    for (i = 0; i < nameArray.length; i++) {
+
+    for (var i = 0; i < nameArray.length; i++) {
         marker = L.marker([latArray[i], lngArray[i]], { win_url: "/view-poui/" + pouiIdArray[i] });
         markers.push(marker);
         // win_url: "https://www.google.com/maps/search/?api=1&query=" + latArray[i] + "," + lngArray[i]
@@ -85,11 +85,11 @@
 
     console.log(markers)
     // add the markers to the map
-    for (i = 0; i < markers.length; i++) {
+    for (var i = 0; i < markers.length; i++) {
         markers[i].addTo(mymap).bindTooltip(nameArray[i]).on('click', onClick);
     }
     
-
+    // set the map tiles to the "outdoor" style from mapbox
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 30,

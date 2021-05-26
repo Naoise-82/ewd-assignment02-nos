@@ -56,10 +56,10 @@ const PointsOfUninterest = {
 
         }
 
-        // convert the coordinates into a string usable by handlebars fr setting the bounds of the map
+        // convert the coordinates into a string usable by handlebars for setting the bounds of the map
         var coordArrayString = JSON.stringify(pouiCoords);
 
-        // split the lat and lng coordinates into two arrays for recombining into markers at the front-end script
+        // split the lat and lng coordinates into two arrays for recombining into the markers at the front-end script
         var latArray = [];
         var lngArray = [];
 
@@ -70,7 +70,7 @@ const PointsOfUninterest = {
           lngArray.push(lng);
         }
 
-        // convert the arrays to literal strings containing [] brackets
+        // convert the arrays to strings containing [] brackets
         var latArrayString = JSON.stringify(latArray);
         var lngArrayString = JSON.stringify(lngArray);
 
