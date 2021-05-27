@@ -17,7 +17,7 @@ const PointsOfUninterest = {
     },
   },
 
-  // dsiplays the POUIs created by the current user
+  // displays the POUIs created by the current user
   report: {
     handler: async function (request, h) {
       try {
