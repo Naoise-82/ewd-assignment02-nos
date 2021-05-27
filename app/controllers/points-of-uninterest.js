@@ -17,36 +17,21 @@ const PointsOfUninterest = {
     },
   },
 
+  // dsiplays the POUIs created by the current user
   report: {
     handler: async function (request, h) {
       try {
         const id = request.auth.credentials.id;
         const user = await User.findById(id);
         const pointsOfUninterest = await PointOfUninterest.find({ creator: id }).populate("creator").lean();
-        return h.view("report", {
-          title: "Your POI's to Date",
-          pointsOfUninterest: pointsOfUninterest,
-          name: user.firstName,
-        });
-      } catch (err) {
-        return h.view("report"), { errors: [{ message: err.message }] }
-      }
-    }
-  },
 
-  viewAllPOUI: {
-    handler: async function (request, h) {
-      try {
-        const id = request.auth.credentials.id;
-        const user = await User.findById(id);
-        const pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
-
+        // set up arrays for POUI details
         var pouiCoords = [];
         var pouiNames = [];
         var pouiIds = [];
 
-        var i;
-        for (i = 0; i < pointsOfUninterest.length; i++) {
+        // populate the arrays        
+        for (var i = 0; i < pointsOfUninterest.length; i++) {
           var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
           var pouiName = pointsOfUninterest[i].name;
           var pouiId = pointsOfUninterest[i]._id;
@@ -63,14 +48,73 @@ const PointsOfUninterest = {
         var latArray = [];
         var lngArray = [];
 
-        for (i = 0; i < pointsOfUninterest.length; i++) {
+        for (var i = 0; i < pointsOfUninterest.length; i++) {
           var lat = pointsOfUninterest[i].location.lat;
           latArray.push(lat);
           var lng = pointsOfUninterest[i].location.lng;
           lngArray.push(lng);
         }
 
-        // convert the arrays to strings containing [] brackets
+        // stringify teh arrays to include all the [] brackets for handlebars paramters
+        var latArrayString = JSON.stringify(latArray);
+        var lngArrayString = JSON.stringify(lngArray);
+
+
+        return h.view("report", {
+          title: "Your POI's to Date",
+          pointsOfUninterest: pointsOfUninterest,
+          name: user.firstName,
+          coordArrayString: coordArrayString,
+          pouiNames: pouiNames,
+          pouiIds: pouiIds,
+          latArrayString: latArrayString,
+          lngArrayString: lngArrayString
+        });
+      } catch (err) {
+        return h.view("report"), { errors: [{ message: err.message }] }
+      }
+    }
+  },
+
+  // displays a page showing all of the POUIs created by all users
+  viewAllPOUI: {
+    handler: async function (request, h) {
+      try {
+        const id = request.auth.credentials.id;
+        const user = await User.findById(id);
+        const pointsOfUninterest = await PointOfUninterest.find().populate("creator").lean();
+
+        // set up arrays for POUI details
+        var pouiCoords = [];
+        var pouiNames = [];
+        var pouiIds = [];
+
+        // populate the arrays        
+        for (var i = 0; i < pointsOfUninterest.length; i++) {
+          var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
+          var pouiName = pointsOfUninterest[i].name;
+          var pouiId = pointsOfUninterest[i]._id;
+          pouiNames.push(pouiName);
+          pouiCoords.push(latLng);
+          pouiIds.push(pouiId);
+
+        }
+
+        // convert the coordinates into a string usable by handlebars for setting the bounds of the map
+        var coordArrayString = JSON.stringify(pouiCoords);
+
+        // split the lat and lng coordinates into two arrays for recombining into the markers at the front-end script
+        var latArray = [];
+        var lngArray = [];
+
+        for (var i = 0; i < pointsOfUninterest.length; i++) {
+          var lat = pointsOfUninterest[i].location.lat;
+          latArray.push(lat);
+          var lng = pointsOfUninterest[i].location.lng;
+          lngArray.push(lng);
+        }
+
+        // stringify teh arrays to include all the [] brackets for handlebars paramters
         var latArrayString = JSON.stringify(latArray);
         var lngArrayString = JSON.stringify(lngArray);
 
@@ -132,8 +176,8 @@ const PointsOfUninterest = {
         var pouiNames = [];
         var pouiIds = [];
 
-        var i;
-        for (i = 0; i < pointsOfUninterest.length; i++) {
+      
+        for (var i = 0; i < pointsOfUninterest.length; i++) {
           var latLng = [pointsOfUninterest[i].location.lat, pointsOfUninterest[i].location.lng];
           var pouiName = pointsOfUninterest[i].name;
           var pouiId = pointsOfUninterest[i]._id;
@@ -150,7 +194,7 @@ const PointsOfUninterest = {
         var latArray = [];
         var lngArray = [];
 
-        for (i = 0; i < pointsOfUninterest.length; i++) {
+        for (var i = 0; i < pointsOfUninterest.length; i++) {
           var lat = pointsOfUninterest[i].location.lat;
           latArray.push(lat);
           var lng = pointsOfUninterest[i].location.lng;

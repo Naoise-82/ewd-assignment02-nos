@@ -10,3 +10,61 @@
     </div>
   </div>
 </div>
+
+<div class="uk-margin uk-margin-auto uk-card-default" id="mapid" style="height: 700px; width: 1200px;"></div>
+
+<script type="text/javascript">
+
+    // create a map object
+    var mymap = L.map('mapid').fitBounds({{ coordArrayString }});
+
+    // convert the string of names passed in via handlebars params back into arrays for building markers
+    var nameArray = "{{pouiNames}}".split(',');
+    console.log(nameArray);
+
+    //convert the pouiIds string passed in via handlebars into an array
+    var pouiIdArray = "{{pouiIds}}".split(',');
+    console.log(pouiIdArray);
+
+    // some quite cumbersome string manipulation and conversion back into the lat and lng arrays
+    var latArrayString = "{{latArrayString}}";
+    latArrayString = latArrayString.substring(1, latArrayString.length-1);
+    console.log(latArrayString);
+    var latArray = latArrayString.split(',');
+    console.log(latArray);
+
+    var lngArrayString = "{{lngArrayString}}";
+    lngArrayString = lngArrayString.substring(1, lngArrayString.length-1);
+    lngArray = lngArrayString.split(',');
+    console.log(lngArray);
+
+    // build an array of markers from the coordinates and names
+    markers = [];
+
+    for (var i = 0; i < nameArray.length; i++) {
+        // each amrker is hyperlinked to its corresponding POUI page on the site
+        marker = L.marker([latArray[i], lngArray[i]], { win_url: "/view-poui/" + pouiIdArray[i] });
+        markers.push(marker);
+    }
+
+    console.log(markers)
+    // add the markers to the map
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].addTo(mymap).bindTooltip(nameArray[i]).on('click', onClick);
+    }
+    
+    // set the map tiles to the "outdoor" style from mapbox
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 30,
+        id: 'mapbox/outdoors-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoibm9zdWxsaXZhbiIsImEiOiJja292ajUzcncwM2gyMm51dHB2MGZtYXhkIn0.Qwbbfz_z5sUYxPlTV1xJ2g'
+    }).addTo(mymap);
+
+    function onClick(e) {
+        window.open(this.options.win_url);
+    }
+
+</script>

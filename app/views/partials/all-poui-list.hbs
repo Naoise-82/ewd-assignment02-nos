@@ -53,7 +53,7 @@
     // create a map object
     var mymap = L.map('mapid').fitBounds({{ coordArrayString }});
 
-    // convert the array strings passed in via handlebars params back into arrays for building markers
+    // convert the string of names passed in via handlebars params back into arrays for building markers
     var nameArray = "{{pouiNames}}".split(',');
     console.log(nameArray);
 
@@ -77,10 +77,9 @@
     markers = [];
 
     for (var i = 0; i < nameArray.length; i++) {
+        // each amrker is hyperlinked to its corresponding POUI page on the site
         marker = L.marker([latArray[i], lngArray[i]], { win_url: "/view-poui/" + pouiIdArray[i] });
         markers.push(marker);
-        // win_url: "https://www.google.com/maps/search/?api=1&query=" + latArray[i] + "," + lngArray[i]
-        // win_url: "./view-poui/" + pouiIdArray[i]
     }
 
     console.log(markers)

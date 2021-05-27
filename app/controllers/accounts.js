@@ -27,7 +27,9 @@ const Accounts = {
         auth: false,
         validate: {
             payload: {
+                // First name must start with a capital letter and be at least 2 characters long
                 firstName: Joi.string().regex(/^[A-Z][a-z]{2,}$/).required(),
+                // last name must be at least 3 charatcers long
                 lastName: Joi.string().required().min(3),
                 email: Joi.string().email().required(),
                 // Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 number and at least
@@ -143,8 +145,6 @@ const Accounts = {
                 firstName: Joi.string().regex(/^[A-Z][a-z]{2,}$/).required(),
                 lastName: Joi.string().regex(/^[A-Z][a-z]$/).required().min(3),
                 email: Joi.string().email().required(),
-                // Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 number and at least
-                // one of this set of special characters: @#!?*£&
                 password: Joi.string().regex(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9])(?=\S*?[@#!?*£&]).{8,})\S$/).required(),
             },
             options: {

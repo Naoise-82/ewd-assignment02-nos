@@ -17,8 +17,8 @@
 
   <div class="uk-text-center uk-margin uk-margin-auto uk-card-default uk-width-1-4@s">
     <p class="uk-text-large"><b>Ratings</b></p>
-    <form action="/upvote/{{id}}" method="POST">
-      <button style="color: green;" class=" submit fas fa-thumbs-up fa-lg uk-padding-small"> {{thumbsUp}} </button>
+    <form class="uk-margin-small" action="/upvote/{{id}}" method="POST">
+      <button style="color: green;" class="fas fa-thumbs-up fa-lg uk-padding-small"> {{thumbsUp}} </button>
     </form>
     <form action="/downvote/{{id}}" method="POST">
       <button style="color: red;" class="fas fa-thumbs-down fa-lg uk-padding-small"> {{thumbsDown}} </button>
@@ -38,7 +38,7 @@
     var mymap = L.map('mapid').setView([{{lat}}, {{lng}}], 13);
 
 
-    // add a marker at the location and an attached tooltip with the name for mouse-over
+    // add a marker at the location and an attached tooltip with the name for mouse-over, hyperlinked to a Google Maps search of the coordinates
     var marker = L.marker([{{lat}}, {{lng}}], { win_url: "https://www.google.com/maps/search/?api=1&query={{lat}},{{lng}}" }).addTo(mymap).bindTooltip("{{name}}").on('click', onClick);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
